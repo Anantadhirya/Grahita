@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="components\Colors.xaml">
+    <Page Include="components\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,6 +115,15 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="public\fonts\Poppins-Black.ttf" />
+    <Resource Include="public\fonts\Poppins-Bold.ttf" />
+    <Resource Include="public\fonts\Poppins-ExtraBold.ttf" />
+    <Resource Include="public\fonts\Poppins-ExtraLight.ttf" />
+    <Resource Include="public\fonts\Poppins-Light.ttf" />
+    <Resource Include="public\fonts\Poppins-Medium.ttf" />
+    <Resource Include="public\fonts\Poppins-Regular.ttf" />
+    <Resource Include="public\fonts\Poppins-SemiBold.ttf" />
+    <Resource Include="public\fonts\Poppins-Thin.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

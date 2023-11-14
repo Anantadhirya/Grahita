@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        <ResourceDictionary Source="components/Colors.xaml" />
+        <ResourceDictionary Source="/components/Styles.xaml" />
     </Window.Resources>
     <Grid Background="{StaticResource bgColor-100}">
         <Grid.RowDefinitions>
@@ -24,17 +24,17 @@
             </Grid.ColumnDefinitions>
 
             <Viewbox Grid.Column="0" HorizontalAlignment="Left">
-                <TextBlock Text="Grahita" Foreground="White" Padding="10,5,10,5"/>
+                <TextBlock Text="Grahita" Foreground="White" Padding="10,5,10,5" FontFamily="{StaticResource Default}"/>
             </Viewbox>
             <Viewbox Grid.Column="1">
-                <Menu Background="Transparent" Foreground="White">
+                <Menu Background="Transparent" Foreground="White" FontFamily="{StaticResource Default}">
                     <MenuItem Header="Buku" Padding="10,5,10,5" Click="NavigateBuku"/>
                     <MenuItem Header="Perpustakaan" Padding="10,5,10,5" Click="NavigatePerpus"/>
                     <MenuItem Header="Dashboard" Padding="10,5,10,5" Click="NavigateDasboard"/>
                 </Menu>
             </Viewbox>
             <Viewbox Grid.Column="2" HorizontalAlignment="Right">
-                <TextBlock Text="Login" Foreground="White" Padding="10,5,10,5"/>
+                <TextBlock Text="Login" Foreground="White" Padding="10,5,10,5" FontFamily="{StaticResource Default}"/>
             </Viewbox>
         </Grid>
 
