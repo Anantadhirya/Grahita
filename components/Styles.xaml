@@ -5,5 +5,6 @@
     <SolidColorBrush x:Key="titleColor-100" Color="#47596f" />
     <SolidColorBrush x:Key="titleColor-200" Color="#54101d" />
     <SolidColorBrush x:Key="titleColor-300" Color="#312229" />
-    <FontFamily x:Key="Default">/public/fonts/Poppins-Regular.ttf</FontFamily>
+    <FontFamily x:Key="Default">/public/fonts/Poppins-Regular.ttf#Poppins</FontFamily>
+    <FontFamily x:Key="DefaultBold">/public/fonts/Poppins-Bold.ttf#Poppins</FontFamily>
 </ResourceDictionary>

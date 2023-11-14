@@ -121,7 +121,9 @@
     <Resource Include="public\fonts\Poppins-ExtraLight.ttf" />
     <Resource Include="public\fonts\Poppins-Light.ttf" />
     <Resource Include="public\fonts\Poppins-Medium.ttf" />
-    <Resource Include="public\fonts\Poppins-Regular.ttf" />
+    <Content Include="public\fonts\Poppins-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="public\fonts\Poppins-SemiBold.ttf" />
     <Resource Include="public\fonts\Poppins-Thin.ttf" />
   </ItemGroup>

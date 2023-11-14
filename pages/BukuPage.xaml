@@ -11,9 +11,26 @@
         <ResourceDictionary Source="/components/Styles.xaml" />
     </Page.Resources>
 
-    <Grid Background="{StaticResource bgColor-100}">
-        <Viewbox>
-            <TextBlock Text="Buku Page"/>
-        </Viewbox>
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="{StaticResource bgColor-100}">
+        <StackPanel>
+            <!-- Judul -->
+            <Viewbox>
+                <StackPanel Width="500">
+                    <TextBlock Text="Grahita" HorizontalAlignment="Center" FontFamily="{StaticResource DefaultBold}"/>
+                    <TextBlock Text="Galeri Buku Harmoni Kita" HorizontalAlignment="Center" FontFamily="{StaticResource Default}"/>
+                </StackPanel>
+            </Viewbox>
+            <TextBlock Text="Grahita" FontSize="30"/>
+            <TextBlock Text="Grahita" FontSize="30"/>
+            <TextBlock Text="Grahita" FontSize="30"/>
+            <TextBlock Text="Grahita" FontSize="30"/>
+            <TextBlock Text="Grahita" FontSize="30"/>
+            <TextBlock Text="Grahita" FontSize="30"/>
+            <TextBlock Text="Grahita" FontSize="30"/>
+            <TextBlock Text="Grahita" FontSize="30"/>
+            <TextBlock Text="Grahita" FontSize="30"/>
+            <TextBlock Text="Grahita" FontSize="30"/>
+            <TextBlock Text="Grahita" FontSize="30"/>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
