@@ -6,7 +6,39 @@
         xmlns:local="clr-namespace:Grahita"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <ResourceDictionary Source="components/Colors.xaml" />
+    </Window.Resources>
+    <Grid Background="{StaticResource bgColor-100}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="30"/>
+            <RowDefinition Height="19*" />
+        </Grid.RowDefinitions>
         
+        <!-- Navbar -->
+        <Grid Grid.Row="0" Background="{StaticResource titleColor-100}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Viewbox Grid.Column="0" HorizontalAlignment="Left">
+                <TextBlock Text="Grahita" Foreground="White" Padding="10,5,10,5"/>
+            </Viewbox>
+            <Viewbox Grid.Column="1">
+                <Menu Background="Transparent" Foreground="White">
+                    <MenuItem Header="Buku" Padding="10,5,10,5" Click="NavigateBuku"/>
+                    <MenuItem Header="Perpustakaan" Padding="10,5,10,5" Click="NavigatePerpus"/>
+                    <MenuItem Header="Dashboard" Padding="10,5,10,5" Click="NavigateDasboard"/>
+                </Menu>
+            </Viewbox>
+            <Viewbox Grid.Column="2" HorizontalAlignment="Right">
+                <TextBlock Text="Login" Foreground="White" Padding="10,5,10,5"/>
+            </Viewbox>
+        </Grid>
+
+        <!-- Pages -->
+        <Frame Grid.Row="1" Name="mainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

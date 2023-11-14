@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Grahita.pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,19 @@ namespace Grahita
         public MainWindow()
         {
             InitializeComponent();
+            mainFrame.Navigate(new BukuPage());
+        }
+        private void NavigateBuku(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new BukuPage());
+        }
+        private void NavigatePerpus(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new PerpusPage());
+        }
+        private void NavigateDasboard(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new DashboardPage());
         }
     }
 }
