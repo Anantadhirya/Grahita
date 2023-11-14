@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Grahita.components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace Grahita.pages
         public BukuPage()
         {
             InitializeComponent();
+            using (var db = new GrahitaDBEntities())
+            {
+                var query = from b in db.Books orderby b.Title select b;
+                BookList.ItemsSource = query.ToList();
+            }
         }
     }
 }
