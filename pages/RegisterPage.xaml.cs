@@ -27,7 +27,7 @@ namespace Grahita.pages
         }
         private void check(string text, ref TextBlock errorText, string type, ref bool valid, string password = "")
         {
-            string errorMessage;
+            string errorMessage = "";
             if (text == "")
             {
                 errorMessage = type + " tidak boleh kosong.";
@@ -38,19 +38,22 @@ namespace Grahita.pages
             }
             else
             {
-                errorMessage = "";
+                if(type == "Username")
+                {
+                    using (var db = new GrahitaDBEntities())
+                    {
+                        var query = from user in db.Users where user.Name == text select user;
+                        if(query.Any())
+                        {
+                            errorMessage = "Username sudah digunakan.";
+                        }
+                    }
+                }
             }
 
-            if(errorMessage != "")
-            {
-                valid = false;
-                errorText.Text = errorMessage;
-                errorText.Visibility = Visibility.Visible;
-            } else
-            {
-                errorText.Text = "";
-                errorText.Visibility = Visibility.Collapsed;
-            }
+            errorText.Text = errorMessage;
+            errorText.Visibility = errorMessage != "" ? Visibility.Visible : Visibility.Collapsed;
+            if(errorMessage != "") valid = false;
         }
         private void onRegister(object sender, RoutedEventArgs e)
         {

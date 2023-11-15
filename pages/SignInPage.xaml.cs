@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Grahita.components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,43 @@ namespace Grahita.pages
         public SignInPage()
         {
             InitializeComponent();
+        }
+        private void setError(TextBlock errorText, string message)
+        {
+            errorText.Text = message;
+            errorText.Visibility = message != "" ? Visibility.Visible : Visibility.Collapsed;
+        }
+        private void onSignIn(object sender, RoutedEventArgs e)
+        {
+            setError(UsernameError, "");
+            setError(PasswordError, "");
+            if (Username.Text == "")
+            {
+                setError(UsernameError, "Username tidak boleh kosong.");
+                return;
+            }
+            if (Password.Password == "")
+            {
+                setError(PasswordError, "Password tidak boleh kosong.");
+                return;
+            }
+            using (var db = new GrahitaDBEntities())
+            {
+                var query = from user in db.Users
+                            where user.Name == Username.Text
+                            select user;
+                if(!query.Any())
+                {
+                    setError(UsernameError, "Username tidak ditemukan.");
+                    return;
+                }
+                if(Password.Password != query.First().Password)
+                {
+                    setError(PasswordError, "Password salah.");
+                    return;
+                }
+                MessageBox.Show("Sign In berhasil", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }
