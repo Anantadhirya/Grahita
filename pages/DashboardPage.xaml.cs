@@ -29,7 +29,7 @@ namespace Grahita.pages
         public DashboardPage(bool isSignedIn, User user, Action<MainWindow.Navigation> Navigate)
         {
             InitializeComponent();
-            updateSignedIn(true, user);
+            updateSignedIn(isSignedIn, user);
             this.Navigate = Navigate;
             MainWindow.UserSignedInChanged += updateSignedIn;
         }
@@ -41,12 +41,16 @@ namespace Grahita.pages
             SignInRequired.Visibility = !isSignedIn ? Visibility.Visible : Visibility.Collapsed;
             Dashboard.Visibility = isSignedIn ? Visibility.Visible : Visibility.Collapsed;
             Username.Text = user?.Name;
-            if(user != null )
+            BookListText.Visibility = Visibility.Collapsed;
+            if(user != null)
             {
                 using (var db = new GrahitaDBEntities())
                 {
                     var query = from book in db.Books where book.Owner == user.Id select book;
-                    var test = query.ToList();
+                    if(query.Any())
+                    {
+                        BookListText.Visibility = Visibility.Visible;
+                    }
                     BookList.ItemsSource = query.ToList();
                 }
             }

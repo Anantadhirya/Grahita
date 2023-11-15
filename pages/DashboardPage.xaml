@@ -60,7 +60,7 @@
                             <TextBlock Name="Username" FontFamily="{StaticResource Default}" FontSize="18"/>
                         </StackPanel>
                     </StackPanel>
-                    <TextBlock Text="List buku yang Anda pinjamkan:" FontFamily="{StaticResource Default}"/>
+                    <TextBlock Name="BookListText" Text="List buku yang Anda pinjamkan:" FontFamily="{StaticResource Default}"/>
                     <ItemsControl Name="BookList">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -82,7 +82,7 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <Button x:Name="btnLoadImage" Content="Load Image" Click="btnLoadImage_Click"/>
+                    <Button x:Name="btnLoadImage" Content="Load Image" Click="btnLoadImage_Click" Margin="0,100,0,0"/>
                     <TextBlock x:Name="txtImagePath" Grid.Row="2" Text="Image Path will be displayed here." TextWrapping="Wrap" VerticalAlignment="Center"/>
                     <Image x:Name="pictureBox" Grid.Row="3" Stretch="Uniform"/>
                 </StackPanel>
