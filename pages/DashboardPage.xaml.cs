@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 ﻿using Microsoft.Win32;
-=======
 ﻿using Grahita.components;
->>>>>>> 8dbec60bf06dc9044f30fef5a70b3c08de3db44c
 using System;
 using System.Collections.Generic;
 using System.Linq;
