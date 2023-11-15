@@ -21,9 +21,11 @@ namespace Grahita.pages
     /// </summary>
     public partial class RegisterPage : Page
     {
-        public RegisterPage()
+        Action<User> SignIn;
+        public RegisterPage(Action<User> SignIn)
         {
             InitializeComponent();
+            this.SignIn = SignIn;
         }
         private void check(string text, ref TextBlock errorText, string type, ref bool valid, string password = "")
         {
@@ -70,6 +72,7 @@ namespace Grahita.pages
                     var user = new User { Name = Username.Text, Password = Password.Password, Contact = Kontak.Text, Location = Alamat.Text };
                     db.Users.Add(user);
                     db.SaveChanges();
+                    SignIn(user);
                     MessageBox.Show("Pendaftaran berhasil", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }

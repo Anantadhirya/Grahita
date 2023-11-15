@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Grahita.components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,17 +22,17 @@ namespace Grahita.pages
     public partial class DashboardPage : Page
     {
         private bool isSignedIn;
-        private int userID;
-        public DashboardPage(bool isSignedIn, int userID)
+        private User user;
+        public DashboardPage(bool isSignedIn, User user)
         {
             InitializeComponent();
-            setSignedIn(isSignedIn, userID);
+            setSignedIn(isSignedIn, user);
             MainWindow.UserSignedInChanged += setSignedIn;
         }
-        private void setSignedIn(bool isSignedIn, int userID)
+        private void setSignedIn(bool isSignedIn, User user)
         {
             this.isSignedIn = isSignedIn;
-            this.userID = userID;
+            this.user = user;
             MainText.Text = isSignedIn ? "Signed In" : "Signed Out";
         }
     }

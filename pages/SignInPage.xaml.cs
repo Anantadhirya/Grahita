@@ -21,9 +21,11 @@ namespace Grahita.pages
     /// </summary>
     public partial class SignInPage : Page
     {
-        public SignInPage()
+        Action<User> SignIn;
+        public SignInPage(Action<User> SignIn)
         {
             InitializeComponent();
+            this.SignIn = SignIn;
         }
         private void setError(TextBlock errorText, string message)
         {
@@ -59,6 +61,7 @@ namespace Grahita.pages
                     setError(PasswordError, "Password salah.");
                     return;
                 }
+                SignIn(query.First());
                 MessageBox.Show("Sign In berhasil", "", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
