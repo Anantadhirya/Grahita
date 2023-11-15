@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using Microsoft.Win32;
+=======
+﻿using Grahita.components;
+>>>>>>> 8dbec60bf06dc9044f30fef5a70b3c08de3db44c
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,17 +27,17 @@ namespace Grahita.pages
     public partial class DashboardPage : Page
     {
         private bool isSignedIn;
-        private int userID;
-        public DashboardPage(bool isSignedIn, int userID)
+        private User user;
+        public DashboardPage(bool isSignedIn, User user)
         {
             InitializeComponent();
-            setSignedIn(isSignedIn, userID);
+            setSignedIn(isSignedIn, user);
             MainWindow.UserSignedInChanged += setSignedIn;
         }
-        private void setSignedIn(bool isSignedIn, int userID)
+        private void setSignedIn(bool isSignedIn, User user)
         {
             this.isSignedIn = isSignedIn;
-            this.userID = userID;
+            this.user = user;
             MainText.Text = isSignedIn ? "Signed In" : "Signed Out";
         }
         private async void btnLoadImage_Click(object sender, RoutedEventArgs e)

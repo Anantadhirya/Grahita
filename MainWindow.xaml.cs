@@ -1,4 +1,5 @@
-﻿using Grahita.pages;
+﻿using Grahita.components;
+using Grahita.pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,23 +23,28 @@ namespace Grahita
     public partial class MainWindow : Window
     {
         private bool isSignedIn;
-        private int userID;
-        public static event Action<bool, int> UserSignedInChanged;
+        private User user;
+        public static event Action<bool, User> UserSignedInChanged;
         public MainWindow()
         {
             InitializeComponent();
             mainFrame.Navigate(new BukuPage());
-            setSignedIn(false, 0);
+            setSignedIn(false, null);
         }
-        private void setSignedIn(bool isSignedIn, int userID)
+        private void setSignedIn(bool isSignedIn, User user)
         {
             this.isSignedIn = isSignedIn;
-            this.userID = userID;
+            this.user = user;
 
             AuthMenu.Visibility = !isSignedIn ? Visibility.Visible : Visibility.Collapsed;
             ProfileMenu.Visibility = isSignedIn ? Visibility.Visible : Visibility.Collapsed;
 
-            UserSignedInChanged?.Invoke(isSignedIn, userID);
+            UserSignedInChanged?.Invoke(isSignedIn, user);
+        }
+        private void SignIn(User user)
+        {
+            setSignedIn(true, user);
+            mainFrame.Navigate(new DashboardPage(isSignedIn, user));
         }
         private void NavigateBuku(object sender, RoutedEventArgs e)
         {
@@ -46,19 +52,19 @@ namespace Grahita
         }
         private void NavigateDasboard(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new DashboardPage(isSignedIn, userID));
+            mainFrame.Navigate(new DashboardPage(isSignedIn, user));
         }
         private void NavigateSignIn(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new SignInPage());
+            mainFrame.Navigate(new SignInPage(SignIn));
         }
         private void NavigateRegister(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new RegisterPage());
+            mainFrame.Navigate(new RegisterPage(SignIn));
         }
         private void NavigateProfile(object sender, RoutedEventArgs e)
         {
-            setSignedIn(false, 0);
+            setSignedIn(false, null);
         }
     }
 }

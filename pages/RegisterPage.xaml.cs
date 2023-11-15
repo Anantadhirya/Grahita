@@ -21,13 +21,15 @@ namespace Grahita.pages
     /// </summary>
     public partial class RegisterPage : Page
     {
-        public RegisterPage()
+        Action<User> SignIn;
+        public RegisterPage(Action<User> SignIn)
         {
             InitializeComponent();
+            this.SignIn = SignIn;
         }
         private void check(string text, ref TextBlock errorText, string type, ref bool valid, string password = "")
         {
-            string errorMessage;
+            string errorMessage = "";
             if (text == "")
             {
                 errorMessage = type + " tidak boleh kosong.";
@@ -38,19 +40,22 @@ namespace Grahita.pages
             }
             else
             {
-                errorMessage = "";
+                if(type == "Username")
+                {
+                    using (var db = new GrahitaDBEntities())
+                    {
+                        var query = from user in db.Users where user.Name == text select user;
+                        if(query.Any())
+                        {
+                            errorMessage = "Username sudah digunakan.";
+                        }
+                    }
+                }
             }
 
-            if(errorMessage != "")
-            {
-                valid = false;
-                errorText.Text = errorMessage;
-                errorText.Visibility = Visibility.Visible;
-            } else
-            {
-                errorText.Text = "";
-                errorText.Visibility = Visibility.Collapsed;
-            }
+            errorText.Text = errorMessage;
+            errorText.Visibility = errorMessage != "" ? Visibility.Visible : Visibility.Collapsed;
+            if(errorMessage != "") valid = false;
         }
         private void onRegister(object sender, RoutedEventArgs e)
         {
@@ -67,6 +72,7 @@ namespace Grahita.pages
                     var user = new User { Name = Username.Text, Password = Password.Password, Contact = Kontak.Text, Location = Alamat.Text };
                     db.Users.Add(user);
                     db.SaveChanges();
+                    SignIn(user);
                     MessageBox.Show("Pendaftaran berhasil", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
