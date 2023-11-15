@@ -13,7 +13,10 @@
 
     <Grid Background="{StaticResource bgColor-100}">
         <Viewbox>
-            <TextBlock Text="Dashboard Page"/>
+            <StackPanel>
+                <TextBlock Text="Dashboard" />
+                <TextBlock Name="MainText" Text="Signed Out"/>
+            </StackPanel>
         </Viewbox>
     </Grid>
 </Page>

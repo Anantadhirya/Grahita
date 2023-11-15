@@ -21,10 +21,24 @@ namespace Grahita
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool isSignedIn;
+        private int userID;
+        public static event Action<bool, int> UserSignedInChanged;
         public MainWindow()
         {
             InitializeComponent();
             mainFrame.Navigate(new BukuPage());
+            setSignedIn(false, 0);
+        }
+        private void setSignedIn(bool isSignedIn, int userID)
+        {
+            this.isSignedIn = isSignedIn;
+            this.userID = userID;
+
+            AuthMenu.Visibility = !isSignedIn ? Visibility.Visible : Visibility.Collapsed;
+            ProfileMenu.Visibility = isSignedIn ? Visibility.Visible : Visibility.Collapsed;
+
+            UserSignedInChanged?.Invoke(isSignedIn, userID);
         }
         private void NavigateBuku(object sender, RoutedEventArgs e)
         {
@@ -36,7 +50,19 @@ namespace Grahita
         }
         private void NavigateDasboard(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new DashboardPage());
+            mainFrame.Navigate(new DashboardPage(isSignedIn, userID));
+        }
+        private void NavigateLogin(object sender, RoutedEventArgs e)
+        {
+            setSignedIn(true, 0);
+        }
+        private void NavigateRegister(object sender, RoutedEventArgs e)
+        {
+            setSignedIn(true, 0);
+        }
+        private void NavigateProfile(object sender, RoutedEventArgs e)
+        {
+            setSignedIn(false, 0);
         }
     }
 }

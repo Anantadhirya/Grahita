@@ -20,9 +20,19 @@ namespace Grahita.pages
     /// </summary>
     public partial class DashboardPage : Page
     {
-        public DashboardPage()
+        private bool isSignedIn;
+        private int userID;
+        public DashboardPage(bool isSignedIn, int userID)
         {
             InitializeComponent();
+            setSignedIn(isSignedIn, userID);
+            MainWindow.UserSignedInChanged += setSignedIn;
+        }
+        private void setSignedIn(bool isSignedIn, int userID)
+        {
+            this.isSignedIn = isSignedIn;
+            this.userID = userID;
+            MainText.Text = isSignedIn ? "Signed In" : "Signed Out";
         }
     }
 }
