@@ -38,6 +38,7 @@ namespace Grahita
 
             AuthMenu.Visibility = !isSignedIn ? Visibility.Visible : Visibility.Collapsed;
             ProfileMenu.Visibility = isSignedIn ? Visibility.Visible : Visibility.Collapsed;
+            Profile.Header = user?.Name;
 
             UserSignedInChanged?.Invoke(isSignedIn, user);
         }
@@ -62,9 +63,10 @@ namespace Grahita
         {
             mainFrame.Navigate(new RegisterPage(SignIn));
         }
-        private void NavigateProfile(object sender, RoutedEventArgs e)
+        private void SignOut(object sender, RoutedEventArgs e)
         {
             setSignedIn(false, null);
+            mainFrame.Navigate(new BukuPage());
         }
     }
 }

@@ -44,7 +44,10 @@
             <!-- Menu Profile -->
             <Viewbox Name="ProfileMenu" Grid.Column="2" HorizontalAlignment="Right" Visibility="Collapsed">
                 <Menu Background="Transparent" Foreground="White" FontFamily="{StaticResource Default}">
-                    <MenuItem Header="Profile" Padding="10,5,10,5" Click="NavigateProfile"/>
+                    <MenuItem Name="Profile" Padding="10,5,10,5" >
+                        <MenuItem Header="Profile" Foreground="{StaticResource titleColor-100}" BorderThickness="0"/>
+                        <MenuItem Header="Sign Out" Click="SignOut"  Foreground="{StaticResource titleColor-100}" BorderThickness="0"/>
+                    </MenuItem>
                 </Menu>
             </Viewbox>
         </Grid>

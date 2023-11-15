@@ -1,5 +1,5 @@
 ﻿using Microsoft.Win32;
-﻿using Grahita.components;
+using Grahita.components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
