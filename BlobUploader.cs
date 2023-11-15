@@ -10,7 +10,7 @@ namespace Grahita.pages
     public class BlobUploader
     {
         //azure blob storage setting
-        private const string connectionString = "DefaultEndpointsProtocol=https;AccountName=grahitademo3;AccountKey=5nNuv/PloQHGePX0YZdl3xr7ttcEKVP60buWbyMb+WXJ8gO2eBWcq9syVdBluaTSMkhWam7ox/6P+AStIt/2IA==;EndpointSuffix=core.windows.net";
+        private const string connectionString = "DefaultEndpointsProtocol=https;AccountName=grahitafix;AccountKey=wxRhr0fP3BGdU0HjXfDKRrtjcs53oMJ9klqKcxeiyAnvsHjqwFrO0hCRbac+wIKgy9/ne6bgQ5/N+AStB4hkxQ==;EndpointSuffix=core.windows.net";
         private const string containerName = "fileupload";
         //
         public static async Task<string> Main(string imagePath)
