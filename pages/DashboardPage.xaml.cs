@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
 
 namespace Grahita.pages
 {
@@ -33,6 +35,19 @@ namespace Grahita.pages
             this.isSignedIn = isSignedIn;
             this.userID = userID;
             MainText.Text = isSignedIn ? "Signed In" : "Signed Out";
+        }
+        private async void btnLoadImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg;*.gif;*.bmp)|*.png;*.jpg;*.jpeg;*.gif;*.bmp|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string imagePath = openFileDialog.FileName;
+                await BlobUploader.Main(imagePath);
+                pictureBox.Source = new BitmapImage(new Uri(imagePath));
+
+            }
         }
     }
 }

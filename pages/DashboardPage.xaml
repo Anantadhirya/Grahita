@@ -16,6 +16,9 @@
             <StackPanel>
                 <TextBlock Text="Dashboard" />
                 <TextBlock Name="MainText" Text="Signed Out"/>
+                <Button x:Name="btnLoadImage" Content="Load Image" Click="btnLoadImage_Click"/>
+                <TextBlock x:Name="txtImagePath" Grid.Row="2" Text="Image Path will be displayed here." TextWrapping="Wrap" VerticalAlignment="Center"/>
+                <Image x:Name="pictureBox" Grid.Row="3" Stretch="Uniform"/>
             </StackPanel>
         </Viewbox>
     </Grid>
