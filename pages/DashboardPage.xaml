@@ -12,14 +12,81 @@
     </Page.Resources>
 
     <Grid Background="{StaticResource bgColor-100}">
-        <Viewbox>
-            <StackPanel>
-                <TextBlock Text="Dashboard" />
-                <TextBlock Name="MainText" Text="Signed Out"/>
-                <Button x:Name="btnLoadImage" Content="Load Image" Click="btnLoadImage_Click"/>
-                <TextBlock x:Name="txtImagePath" Grid.Row="2" Text="Image Path will be displayed here." TextWrapping="Wrap" VerticalAlignment="Center"/>
-                <Image x:Name="pictureBox" Grid.Row="3" Stretch="Uniform"/>
+        <Viewbox Name="SignInRequired" Visibility="Collapsed">
+            <StackPanel Width="500" Margin="100,0,100,0">
+                <TextBlock FontFamily="{StaticResource Default}" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <Run Text="Anda perlu melakukan"/>
+                    <Run Text="Sign In" FontWeight="Bold" FontFamily="{StaticResource DefaultBold}"/>
+                    <Run Text="untuk mengakses dashboard Anda."/>
+                </TextBlock>
+                <Button Width="150" Content="Sign In" FontFamily="{StaticResource Default}" Foreground="{StaticResource bgColor-100}" Click="NavigateSignIn">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="{StaticResource titleColor-200}"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="2">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource bgColor-200}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </StackPanel>
         </Viewbox>
+        <ScrollViewer Name="Dashboard" Visibility="Visible">
+            <Viewbox VerticalAlignment="Top" Stretch="UniformToFill" Margin="0,0,0,30">
+                <StackPanel Width="600" Margin="100,0,100,0">
+                    <!-- Profile Picture -->
+                    <StackPanel Orientation="Horizontal" Margin="0,15,0,10">
+                        <Border Width="100" Height="100" CornerRadius="50">
+                            <Border.Clip>
+                                <EllipseGeometry RadiusX="50" RadiusY="50" Center="50,50" />
+                            </Border.Clip>
+                            <Viewbox>
+                                <Image Source="/public/images/blank_profile.jpg"/>
+                            </Viewbox>
+                        </Border>
+                        <StackPanel VerticalAlignment="Center" Margin="15,0,0,0">
+                            <TextBlock Text="Dashboard" FontFamily="{StaticResource DefaultBold}" FontSize="20"/>
+                            <TextBlock Name="Username" FontFamily="{StaticResource Default}" FontSize="18"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock Text="List buku yang Anda pinjamkan:" FontFamily="{StaticResource Default}"/>
+                    <ItemsControl Name="BookList">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Width="95" Height="120" Margin="2.5,3,2.5,3" CornerRadius="7.5" Background="{StaticResource bgColor-200}">
+                                    <Border Width="90" Height="115" Background="{StaticResource bgColor-100}">
+                                        <Border.Clip>
+                                            <RectangleGeometry Rect="0,0,90,115" RadiusX="5" RadiusY="5"/>
+                                        </Border.Clip>
+                                        <Viewbox>
+                                            <TextBlock Text="{Binding Title}"/>
+                                        </Viewbox>
+                                    </Border>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button x:Name="btnLoadImage" Content="Load Image" Click="btnLoadImage_Click"/>
+                    <TextBlock x:Name="txtImagePath" Grid.Row="2" Text="Image Path will be displayed here." TextWrapping="Wrap" VerticalAlignment="Center"/>
+                    <Image x:Name="pictureBox" Grid.Row="3" Stretch="Uniform"/>
+                </StackPanel>
+            </Viewbox>
+        </ScrollViewer>
     </Grid>
 </Page>

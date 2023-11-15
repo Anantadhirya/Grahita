@@ -25,17 +25,35 @@ namespace Grahita.pages
     {
         private bool isSignedIn;
         private User user;
-        public DashboardPage(bool isSignedIn, User user)
+        Action<MainWindow.Navigation> Navigate;
+        public DashboardPage(bool isSignedIn, User user, Action<MainWindow.Navigation> Navigate)
         {
             InitializeComponent();
-            setSignedIn(isSignedIn, user);
-            MainWindow.UserSignedInChanged += setSignedIn;
+            updateSignedIn(true, user);
+            this.Navigate = Navigate;
+            MainWindow.UserSignedInChanged += updateSignedIn;
         }
-        private void setSignedIn(bool isSignedIn, User user)
+        private void updateSignedIn(bool isSignedIn, User user)
         {
             this.isSignedIn = isSignedIn;
             this.user = user;
-            MainText.Text = isSignedIn ? "Signed In" : "Signed Out";
+
+            SignInRequired.Visibility = !isSignedIn ? Visibility.Visible : Visibility.Collapsed;
+            Dashboard.Visibility = isSignedIn ? Visibility.Visible : Visibility.Collapsed;
+            Username.Text = user?.Name;
+            if(user != null )
+            {
+                using (var db = new GrahitaDBEntities())
+                {
+                    var query = from book in db.Books where book.Owner == user.Id select book;
+                    var test = query.ToList();
+                    BookList.ItemsSource = query.ToList();
+                }
+            }
+        }
+        private void NavigateSignIn(object sender, RoutedEventArgs e)
+        {
+            Navigate(MainWindow.Navigation.signin);
         }
         private async void btnLoadImage_Click(object sender, RoutedEventArgs e)
         {
@@ -45,8 +63,9 @@ namespace Grahita.pages
             if (openFileDialog.ShowDialog() == true)
             {
                 string imagePath = openFileDialog.FileName;
-                await BlobUploader.Main(imagePath);
-                pictureBox.Source = new BitmapImage(new Uri(imagePath));
+                string imageUrl = await BlobUploader.Main(imagePath);
+                pictureBox.Source = new BitmapImage(new Uri(imageUrl));
+                txtImagePath.Text = imageUrl;
 
             }
         }
