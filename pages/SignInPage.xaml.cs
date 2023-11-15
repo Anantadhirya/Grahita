@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Grahita.pages
 {
     /// <summary>
-    /// Interaction logic for PerpusPage.xaml
+    /// Interaction logic for SignInPage.xaml
     /// </summary>
-    public partial class PerpusPage : Page
+    public partial class SignInPage : Page
     {
-        public PerpusPage()
+        public SignInPage()
         {
             InitializeComponent();
         }

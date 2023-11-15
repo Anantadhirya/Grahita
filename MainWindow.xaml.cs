@@ -44,21 +44,17 @@ namespace Grahita
         {
             mainFrame.Navigate(new BukuPage());
         }
-        private void NavigatePerpus(object sender, RoutedEventArgs e)
-        {
-            mainFrame.Navigate(new PerpusPage());
-        }
         private void NavigateDasboard(object sender, RoutedEventArgs e)
         {
             mainFrame.Navigate(new DashboardPage(isSignedIn, userID));
         }
-        private void NavigateLogin(object sender, RoutedEventArgs e)
+        private void NavigateSignIn(object sender, RoutedEventArgs e)
         {
-            setSignedIn(true, 0);
+            mainFrame.Navigate(new SignInPage());
         }
         private void NavigateRegister(object sender, RoutedEventArgs e)
         {
-            setSignedIn(true, 0);
+            mainFrame.Navigate(new RegisterPage());
         }
         private void NavigateProfile(object sender, RoutedEventArgs e)
         {
