@@ -56,7 +56,7 @@ namespace Grahita.pages
                     setError(UsernameError, "Username tidak ditemukan.");
                     return;
                 }
-                if(Password.Password != query.First().Password)
+                if(!HashHelper.VerifyPassword(Password.Password, query.First().Password))
                 {
                     setError(PasswordError, "Password salah.");
                     return;

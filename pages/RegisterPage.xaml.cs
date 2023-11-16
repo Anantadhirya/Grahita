@@ -69,7 +69,7 @@ namespace Grahita.pages
             {
                 using (var db = new GrahitaDBEntities())
                 {
-                    var user = new User { Name = Username.Text, Password = Password.Password, Contact = Kontak.Text, Location = Alamat.Text };
+                    var user = new User { Name = Username.Text, Password = HashHelper.HashPassword(Password.Password), Contact = Kontak.Text, Location = Alamat.Text };
                     db.Users.Add(user);
                     db.SaveChanges();
                     SignIn(user);
