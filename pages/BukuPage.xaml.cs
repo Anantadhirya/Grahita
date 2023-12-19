@@ -28,6 +28,7 @@ namespace Grahita.pages
             {
                 var query = from b in db.Books orderby b.Title select b;
                 BookList.ItemsSource = query.ToList();
+                LatestBook.ItemsSource = query.ToList();
             }
         }
     }

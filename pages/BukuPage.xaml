@@ -30,7 +30,27 @@
                     </Grid>
                 </Border>
             </Viewbox>
-            <!-- List Buku -->
+            <!-- Buku Section-->
+			<!-- Carousel Latest Buku -->
+			<ScrollViewer HorizontalScrollBarVisibility="Visible" Margin="0,50,0,50">
+				<ItemsControl Name="LatestBook">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Margin="20,10,20,10" Orientation="Vertical">
+								<Image Source="{Binding Image}" Width="100" Height="100" />
+								<TextBlock Text="{Binding Title}"/>
+								<TextBlock Text="{Binding Author}"/>
+							</StackPanel>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</ScrollViewer>
+				<!-- List Buku -->
             <ItemsControl Name="BookList">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
