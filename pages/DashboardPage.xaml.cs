@@ -26,12 +26,14 @@ namespace Grahita.pages
         private bool isSignedIn;
         private User user;
         Action<MainWindow.Navigation> Navigate;
-        public DashboardPage(bool isSignedIn, User user, Action<MainWindow.Navigation> Navigate)
+        Action<object, RoutedEventArgs> onClick;
+        public DashboardPage(bool isSignedIn, User user, Action<MainWindow.Navigation> Navigate, Action<object, RoutedEventArgs> onClick)
         {
             InitializeComponent();
             updateSignedIn(isSignedIn, user);
             this.Navigate = Navigate;
             MainWindow.UserSignedInChanged += updateSignedIn;
+            this.onClick = onClick;
         }
         private void updateSignedIn(bool isSignedIn, User user)
         {

@@ -47,44 +47,41 @@
                     </StackPanel>
                     <!-- List Buku -->
                     <TextBlock Name="BookListText" Text="Buku Anda:" FontFamily="{StaticResource Default}" />
-                    <Button Height="100" Margin="0,3,0,3" Content="Tambahkan" Click="NavigateTambahBuku" FontSize="15" Style="{StaticResource DefaultButton}"/>
+                    <Button Height="100" Margin="0,3,0,3" Click="NavigateTambahBuku" FontSize="15" Style="{StaticResource BookButton}">
+                        <TextBlock Text="Tambahkan Buku" FontFamily="{StaticResource Default}" HorizontalAlignment="Center"/>
+                    </Button>
                     <!-- Map Buku -->
                     <ItemsControl Name="BookList">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch">
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Height="100" Margin="0,3,0,3" CornerRadius="5" BorderBrush="{StaticResource bgColor-200}" BorderThickness="2">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Viewbox>
-                                                        <Image Stretch="UniformToFill" Source="{Binding Image}"/>
-                                                    </Viewbox>
-                                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="20,0,0,0">
-                                                        <TextBlock Text="{Binding Title}" FontSize="15" Margin="0,0,0,3"/>
-                                                        <TextBlock Text="{Binding Author}" FontSize="14" Margin="0,0,0,5"/>
-                                                        <TextBlock FontSize="10">
-                                                            <TextBlock.Style>
-                                                                <Style TargetType="TextBlock">
-                                                                    <Setter Property="Text" Value="Not Available"/>
-                                                                    <Style.Triggers>
-                                                                        <DataTrigger Binding="{Binding Available}" Value="True">
-                                                                            <Setter Property="Text" Value="Available"/>
-                                                                        </DataTrigger>
-                                                                        <DataTrigger Binding="{Binding Available}" Value="False">
-                                                                            <Setter Property="Text" Value="Not Available"/>
-                                                                        </DataTrigger>
-                                                                    </Style.Triggers>
-                                                                </Style>
-                                                            </TextBlock.Style>
-                                                        </TextBlock>
-                                                    </StackPanel>
-                                                </StackPanel>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Button.Template>
+                                <Button Style="{StaticResource BookButton}" Height="100" Margin="0,2,0,2" Click="onClick">
+                                    <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
+                                        <Border Width="70" Height="90" Background="{StaticResource bgColor-200}" CornerRadius="5">
+                                            <Image Source="{Binding Image}" Margin="3,3,3,3"/>
+                                        </Border>
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="20,0,0,0">
+                                            <TextBlock Text="{Binding Title}" FontSize="15" Margin="0,0,0,3" FontFamily="{StaticResource DefaultBold}"/>
+                                            <TextBlock Text="{Binding Author}" FontSize="14" Margin="0,0,0,10"/>
+                                            <TextBlock FontSize="10">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Text" Value="Not Available"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Available}" Value="True">
+                                                                <Setter Property="Text" Value="Available" />
+                                                                <Setter Property="Foreground" Value="Green" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Available}" Value="False">
+                                                                <Setter Property="Text" Value="Not Available"/>
+                                                                <Setter Property="Foreground" Value="Red" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
                                 </Button>
-
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

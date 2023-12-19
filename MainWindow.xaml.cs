@@ -55,7 +55,7 @@ namespace Grahita
         public void Navigate(Navigation target)
         {
             if (target == Navigation.buku) mainFrame.Navigate(new BukuPage(NavigateKeterangan));
-            else if (target == Navigation.dashboard) mainFrame.Navigate(new DashboardPage(isSignedIn, user, Navigate));
+            else if (target == Navigation.dashboard) mainFrame.Navigate(new DashboardPage(isSignedIn, user, Navigate, NavigateKeterangan));
             else if (target == Navigation.signin) mainFrame.Navigate(new SignInPage(SignIn));
             else if (target == Navigation.register) mainFrame.Navigate(new RegisterPage(SignIn));
             else if (target == Navigation.tambahBuku) mainFrame.Navigate(new TambahBukuPage(user, Navigate));
