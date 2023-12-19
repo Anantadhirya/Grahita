@@ -8,7 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DashboardPage">
     <Page.Resources>
-        <ResourceDictionary Source="/components/Styles.xaml" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/components/Styles.xaml" />
+                <ResourceDictionary Source="/components/Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
 
     <Grid Background="{StaticResource bgColor-100}">
@@ -19,27 +24,7 @@
                     <Run Text="Sign In" FontWeight="Bold" FontFamily="{StaticResource DefaultBold}"/>
                     <Run Text="untuk mengakses dashboard Anda."/>
                 </TextBlock>
-                <Button Width="150" Content="Sign In" FontFamily="{StaticResource Default}" Foreground="{StaticResource bgColor-100}" Click="NavigateSignIn">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="{StaticResource titleColor-200}"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="2">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="{StaticResource bgColor-200}"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                <Button Width="150" Content="Sign In" Click="NavigateSignIn" Style="{StaticResource DefaultButton}"/>
             </StackPanel>
         </Viewbox>
         <ScrollViewer Name="Dashboard" Visibility="Visible">
@@ -62,27 +47,7 @@
                     </StackPanel>
                     <!-- List Buku -->
                     <TextBlock Name="BookListText" Text="Buku Anda:" FontFamily="{StaticResource Default}" />
-                    <Button Height="100" Margin="0,3,0,3" Content="Tambahkan" FontFamily="{StaticResource Default}" Foreground="{StaticResource bgColor-100}" Click="NavigateTambahBuku" FontSize="15">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="{StaticResource titleColor-200}"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="2">
-                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="{StaticResource bgColor-200}"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                    <Button Height="100" Margin="0,3,0,3" Content="Tambahkan" Click="NavigateTambahBuku" FontSize="15" Style="{StaticResource DefaultButton}"/>
                     <ItemsControl Name="BookList">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -93,7 +58,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                     <!-- Temp -->
-                    <Button x:Name="btnLoadImage" Content="Load Image" Click="btnLoadImage_Click" Margin="0,100,0,0"/>
+                    <Button x:Name="btnLoadImage" Content="Load Image" Click="btnLoadImage_Click" Margin="0,100,0,0" Style="{StaticResource DefaultButton}"/>
                     <TextBlock x:Name="txtImagePath" Grid.Row="2" Text="Image Path will be displayed here." TextWrapping="Wrap" VerticalAlignment="Center"/>
                     <Image x:Name="pictureBox" Grid.Row="3" Stretch="Uniform"/>
                 </StackPanel>
