@@ -10,18 +10,19 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Grahita.pages
 {
-    /// <summary>
-    /// Interaction logic for BukuPage.xaml
-    /// </summary>
     public partial class BukuPage : Page
     {
         Action<object,RoutedEventArgs> onClick;
+        private Point startPoint;
+        private double startHorizontalOffset;
+        private bool isButtonClick;
         public BukuPage(Action<object, RoutedEventArgs> onClick)
         {
             InitializeComponent();
@@ -32,6 +33,63 @@ namespace Grahita.pages
                 LatestBook.ItemsSource = query.ToList();
             }
             this.onClick = onClick;
+        }
+        private void Carousel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition(this);
+            startHorizontalOffset = CarouselScrollViewer.HorizontalOffset;
+            CarouselScrollViewer.CaptureMouse();
+            isButtonClick = true;
+        }
+        private void Carousel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (CarouselScrollViewer.IsMouseCaptured)
+            {
+                Point currentPoint = e.GetPosition(this);
+                double offsetX = currentPoint.X - startPoint.X;
+                CarouselScrollViewer.ScrollToHorizontalOffset(startHorizontalOffset - offsetX/GetViewboxScale());
+                if(Math.Abs(offsetX) > SystemParameters.MinimumHorizontalDragDistance)
+                {
+                    isButtonClick = false;
+                }
+            }
+        }
+        private void Carousel_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            CarouselScrollViewer.ReleaseMouseCapture();
+            if(isButtonClick)
+            {
+                var hitTestResult = VisualTreeHelper.HitTest(LatestBook, e.GetPosition(LatestBook));
+                if (hitTestResult != null)
+                {
+                    var button = FindVisualParent<Button>(hitTestResult.VisualHit);
+                    if (button != null)
+                    {
+                        onClick(button, null);
+                    }
+                }
+            }
+            isButtonClick = false;
+        }
+        // Helper function untuk carousel
+        private T FindVisualParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            DependencyObject parent = VisualTreeHelper.GetParent(child);
+
+            while (parent != null && !(parent is T))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            return parent as T;
+        }
+        private double GetViewboxScale()
+        {
+            if (CarouselScrollViewer.Parent is Viewbox viewbox)
+            {
+                return viewbox.ActualWidth / CarouselScrollViewer.ViewportWidth;
+            }
+            return 1.0;
         }
     }
 }

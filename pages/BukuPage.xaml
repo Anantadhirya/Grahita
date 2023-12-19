@@ -32,27 +32,46 @@
             </Viewbox>
             <!-- Buku Section-->
 			<!-- Carousel Latest Buku -->
-			<ScrollViewer HorizontalScrollBarVisibility="Visible" Margin="0,50,0,50">
-				<ItemsControl Name="LatestBook">
-					<ItemsControl.ItemsPanel>
-						<ItemsPanelTemplate>
-							<WrapPanel Orientation="Horizontal" />
-						</ItemsPanelTemplate>
-					</ItemsControl.ItemsPanel>
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-                            <Button Click="onClick" Background="Transparent" BorderBrush="Transparent">
-                                <StackPanel Margin="20,10,20,10" Orientation="Vertical">
-								    <Image Source="{Binding Image}" Width="100" Height="100" />
-								    <TextBlock Text="{Binding Title}"/>
-								    <TextBlock Text="{Binding Author}"/>
-							    </StackPanel>
-                            </Button>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
-            </ScrollViewer>
-            <TextBlock Name="Test" Text="Signals and Systems" Background="{StaticResource titleColor-100}"/>
+            <Viewbox>
+                <ScrollViewer Name="CarouselScrollViewer"
+                              HorizontalScrollBarVisibility="Hidden" 
+                              VerticalScrollBarVisibility="Disabled"
+                              Width="900"
+                              Margin="0,10,0,10"
+                              PreviewMouseLeftButtonDown="Carousel_MouseDown"
+                              PreviewMouseMove="Carousel_MouseMove"
+                              PreviewMouseLeftButtonUp="Carousel_MouseUp"
+                              >
+                    <ItemsControl Name="LatestBook">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="{StaticResource bgColor-200}" BorderThickness="2" CornerRadius="5" Width="136" Height="180" Margin="2,0,2,0">
+                                    <Button Click="onClick" Background="Transparent" BorderBrush="Transparent">
+                                        <Grid Height="180" Width="120" Margin="0,2,0,2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="7*"/>
+                                                <RowDefinition Height="3*"/>
+                                            </Grid.RowDefinitions>
+                                            <Border Grid.Row="0" Width="100" Background="{StaticResource bgColor-200}" CornerRadius="5">
+                                                <Image Source="{Binding Image}" VerticalAlignment="Center" Margin="5,5,5,5" />
+                                            </Border>
+                                            <StackPanel Grid.Row="1" Margin="0,10,0,0">
+                                                <TextBlock Text="{Binding Title}" FontFamily="{StaticResource DefaultBold}" TextTrimming="CharacterEllipsis" FontSize="10"/>
+                                                <TextBlock Text="{Binding Author}" FontFamily="{StaticResource Default}" TextTrimming="CharacterEllipsis" FontSize="8"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Viewbox>
             <!-- List Buku -->
             <ItemsControl Name="BookList">
                 <ItemsControl.ItemTemplate>
