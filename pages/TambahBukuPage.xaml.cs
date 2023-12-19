@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Grahita.components;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,54 @@ namespace Grahita.pages
     /// </summary>
     public partial class TambahBukuPage : Page
     {
-        public TambahBukuPage()
+        private User user;
+        private Action<MainWindow.Navigation> Navigate;
+        public TambahBukuPage(User user, Action<MainWindow.Navigation> Navigate)
         {
             InitializeComponent();
+            this.user = user;
+            this.Navigate = Navigate;
+        }
+        private void check(string text, ref TextBlock errorText, string type, ref bool valid, string password = "")
+        {
+            string errorMessage = "";
+            if (text == "")
+            {
+                errorMessage = type + " tidak boleh kosong.";
+            }
+            errorText.Text = errorMessage;
+            errorText.Visibility = errorMessage != "" ? Visibility.Visible : Visibility.Collapsed;
+            if (errorMessage != "") valid = false;
+        }
+        private void onTambahGambar(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg;*.gif;*.bmp)|*.png;*.jpg;*.jpeg;*.gif;*.bmp|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string imagePath = openFileDialog.FileName;
+                Gambar.Text = imagePath;
+            }
+        }
+        private async void onTambahBuku(object sender, RoutedEventArgs e)
+        {
+            bool valid = true;
+            check(Judul.Text, ref JudulError, "Judul", ref valid);
+            check(Author.Text, ref AuthorError, "Author", ref valid);
+            check(Gambar.Text, ref ImageError, "Gambar", ref valid);
+            if (valid)
+            {
+                using (var db = new GrahitaDBEntities())
+                {
+                    string imageUrl = await BlobUploader.Main(Gambar.Text);
+                    var book = new Book { Title = Judul.Text, Author = Author.Text, Image = imageUrl, Owner = user.Id, Available = true };
+                    db.Books.Add(book);
+                    db.SaveChanges();
+                    Navigate(MainWindow.Navigation.dashboard);
+                    MessageBox.Show("Penambahan buku berhasil", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
         }
     }
 }
