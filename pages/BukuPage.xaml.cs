@@ -29,10 +29,46 @@ namespace Grahita.pages
             using (var db = new GrahitaDBEntities())
             {
                 var query = from b in db.Books orderby b.Title select b;
-                BookList.ItemsSource = query.ToList();
-                LatestBook.ItemsSource = query.ToList();
+                BookList.ItemsSource = query.Take(100).ToList();
+
+                query = from b in db.Books orderby b.Id descending select b;
+                LatestBook.ItemsSource = query.Take(10).ToList();
             }
             this.onClick = onClick;
+        }
+
+        // Search bar
+        private void onSearchGotFocus(object sender, RoutedEventArgs e)
+        {
+            SearchPlaceholder.Visibility = Visibility.Collapsed;
+        }
+        private void onSearchLostFocus(object sender, RoutedEventArgs e)
+        {
+            if(SearchText.Text == "") SearchPlaceholder.Visibility = Visibility.Visible;
+        }
+        private void onSearchEnter(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                var searchString = SearchText.Text;
+                if(searchString == "")
+                {
+                    TextBukuTerbaru.Visibility = Visibility.Visible;
+                    CarouselScrollViewer.Visibility = Visibility.Visible;
+                    TextDaftarBuku.Text = "Daftar Buku";
+                } else
+                {
+                    TextBukuTerbaru.Visibility =Visibility.Collapsed;
+                    CarouselScrollViewer.Visibility = Visibility.Collapsed;
+                    TextDaftarBuku.Text = "Hasil Pencarian";
+                }
+                using(var db = new GrahitaDBEntities())
+                {
+                    var searchWords = searchString.Split(' ').Where(i => !string.IsNullOrEmpty(i));
+                    var query = from b in db.Books orderby b.Title where searchWords.All(searchWord => b.Title.Contains(searchWord)) select b;
+                    BookList.ItemsSource = query.Take(100).ToList();
+                }
+            }
         }
 
         // Fungsi-fungsi untuk swipe carousel
