@@ -46,7 +46,8 @@ namespace Grahita.pages
             {
                 using (var db = new GrahitaDBEntities())
                 {
-                    var query = from book in db.Books where book.Owner == user.Id select book;
+                    // var query = from book in db.Books where book.Owner == user.Id select book;
+                    var query = from book in db.Books select book;
                     if(query.Any())
                     {
                         BookListText.Visibility = Visibility.Visible;
@@ -58,6 +59,10 @@ namespace Grahita.pages
         private void NavigateSignIn(object sender, RoutedEventArgs e)
         {
             Navigate(MainWindow.Navigation.signin);
+        }
+        private void NavigateTambahBuku(object sender, RoutedEventArgs e)
+        {
+            Navigate(MainWindow.Navigation.tambahBuku);
         }
         private async void btnLoadImage_Click(object sender, RoutedEventArgs e)
         {
