@@ -27,6 +27,27 @@ namespace Grahita.pages
             InitializeComponent();
             this.book = book;
             Judul.Text = book.Title;
-        }
+            Gambar.Source = new BitmapImage(new Uri(book.Image));
+            Author.Text = book.Author;
+
+            using (var db = new GrahitaDBEntities())
+            {
+                var query = from user in db.Users
+                            where user.Id == book.Owner
+                            select user;
+                Owner.Text = query.First().Name;
+            }
+
+            if (book.Available)
+            {
+                Status.Text = "Tersedia";
+                Status.Foreground = new SolidColorBrush(Colors.Green);
+            }
+            else
+            {
+                Status.Text = "Dipinjam";
+                Status.Foreground = new SolidColorBrush(Colors.Red);
+            }
+        }   
     }
 }
