@@ -21,7 +21,8 @@ namespace Grahita.pages
     /// </summary>
     public partial class BukuPage : Page
     {
-        public BukuPage()
+        Action<object,RoutedEventArgs> onClick;
+        public BukuPage(Action<object, RoutedEventArgs> onClick)
         {
             InitializeComponent();
             using (var db = new GrahitaDBEntities())
@@ -30,6 +31,7 @@ namespace Grahita.pages
                 BookList.ItemsSource = query.ToList();
                 LatestBook.ItemsSource = query.ToList();
             }
+            this.onClick = onClick;
         }
     }
 }

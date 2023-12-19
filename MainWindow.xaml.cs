@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Grahita
 {
@@ -28,7 +29,7 @@ namespace Grahita
         public MainWindow()
         {
             InitializeComponent();
-            mainFrame.Navigate(new BukuPage());
+            Navigate(Navigation.buku);
             setSignedIn(false, null);
         }
         private void setSignedIn(bool isSignedIn, User user)
@@ -49,10 +50,11 @@ namespace Grahita
             signin,
             register,
             tambahBuku,
+            keteranganBuku,
         }
         public void Navigate(Navigation target)
         {
-            if (target == Navigation.buku) mainFrame.Navigate(new BukuPage());
+            if (target == Navigation.buku) mainFrame.Navigate(new BukuPage(NavigateKeterangan));
             else if (target == Navigation.dashboard) mainFrame.Navigate(new DashboardPage(isSignedIn, user, Navigate));
             else if (target == Navigation.signin) mainFrame.Navigate(new SignInPage(SignIn));
             else if (target == Navigation.register) mainFrame.Navigate(new RegisterPage(SignIn));
@@ -83,6 +85,13 @@ namespace Grahita
         {
             setSignedIn(false, null);
             Navigate(Navigation.buku);
+        }
+        private void NavigateKeterangan(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.DataContext is Book clickedBook)
+            {
+                mainFrame.Navigate(new KeteranganBukuPage(clickedBook));
+            }
         }
     }
 }

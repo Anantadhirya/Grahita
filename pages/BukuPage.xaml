@@ -41,16 +41,19 @@
 					</ItemsControl.ItemsPanel>
 					<ItemsControl.ItemTemplate>
 						<DataTemplate>
-							<StackPanel Margin="20,10,20,10" Orientation="Vertical">
-								<Image Source="{Binding Image}" Width="100" Height="100" />
-								<TextBlock Text="{Binding Title}"/>
-								<TextBlock Text="{Binding Author}"/>
-							</StackPanel>
+                            <Button Click="onClick" Background="Transparent" BorderBrush="Transparent">
+                                <StackPanel Margin="20,10,20,10" Orientation="Vertical">
+								    <Image Source="{Binding Image}" Width="100" Height="100" />
+								    <TextBlock Text="{Binding Title}"/>
+								    <TextBlock Text="{Binding Author}"/>
+							    </StackPanel>
+                            </Button>
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
 				</ItemsControl>
-			</ScrollViewer>
-				<!-- List Buku -->
+            </ScrollViewer>
+            <TextBlock Name="Test" Text="Signals and Systems" Background="{StaticResource titleColor-100}"/>
+            <!-- List Buku -->
             <ItemsControl Name="BookList">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -61,7 +64,6 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <TextBlock Name="Test"/>
         </StackPanel>
     </ScrollViewer>
 </Page>

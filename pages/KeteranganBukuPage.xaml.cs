@@ -1,5 +1,4 @@
-using Microsoft.Win32;
-using Grahita.components;
+﻿using Grahita.components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +13,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Drawing;
 
 namespace Grahita.pages
 {
+    /// <summary>
+    /// Interaction logic for KeteranganBukuPage.xaml
+    /// </summary>
     public partial class KeteranganBukuPage : Page
     {
-
+        Book book;
+        public KeteranganBukuPage(Book book)
+        {
+            InitializeComponent();
+            this.book = book;
+            Judul.Text = book.Title;
+        }
     }
+}
