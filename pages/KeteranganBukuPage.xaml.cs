@@ -27,7 +27,7 @@ namespace Grahita.pages
             InitializeComponent();
             this.book = book;
             Judul.Text = book.Title;
-            Gambar.Source = new BitmapImage(new Uri(book.Image));
+            Gambar.Source = book.Image != null ? new BitmapImage(new Uri(book.Image)) : null;
             Author.Text = book.Author;
 
             using (var db = new GrahitaDBEntities())
@@ -35,7 +35,7 @@ namespace Grahita.pages
                 var query = from user in db.Users
                             where user.Id == book.Owner
                             select user;
-                Owner.Text = query.First().Name;
+                Owner.Text = query.FirstOrDefault() != null ? query.First().Name : "";
             }
 
             if (book.Available)

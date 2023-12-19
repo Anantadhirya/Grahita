@@ -26,11 +26,11 @@
                     </StackPanel>
                     <!-- Identitas Buku -->
                     <StackPanel Orientation="Horizontal" Margin="0,15,0,10">
-                        <Border Width="150" Height="200" CornerRadius="15" BorderBrush="Black" BorderThickness="1">
+                        <Border Width="150" Height="200" CornerRadius="15" Background="{StaticResource bgColor-200}">
                             <Border.Clip>
                                 <RectangleGeometry Rect="0,0,150,200" RadiusX="15" RadiusY="15"/>
                             </Border.Clip>
-                            <Viewbox>
+                            <Viewbox Margin="10,10,10,10">
                                 <Image x:Name="Gambar" Width="150" Height="200"/>
                             </Viewbox>
                         </Border>
