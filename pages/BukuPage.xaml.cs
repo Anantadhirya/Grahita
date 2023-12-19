@@ -34,6 +34,8 @@ namespace Grahita.pages
             }
             this.onClick = onClick;
         }
+
+        // Fungsi-fungsi untuk swipe carousel
         private void Carousel_MouseDown(object sender, MouseButtonEventArgs e)
         {
             startPoint = e.GetPosition(this);
@@ -85,11 +87,14 @@ namespace Grahita.pages
         }
         private double GetViewboxScale()
         {
-            if (CarouselScrollViewer.Parent is Viewbox viewbox)
+            var viewbox = FindVisualParent<Viewbox>(CarouselScrollViewer);
+            if (viewbox != null)
             {
                 return viewbox.ActualWidth / CarouselScrollViewer.ViewportWidth;
             }
             return 1.0;
         }
+
+        //
     }
 }
