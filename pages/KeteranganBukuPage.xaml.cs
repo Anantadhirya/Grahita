@@ -23,7 +23,8 @@ namespace Grahita.pages
     {
         Book book;
         User owner, currentUser;
-        public KeteranganBukuPage(Book book, User currentUser)
+        Action<object, RoutedEventArgs> Navigate;
+        public KeteranganBukuPage(Book book, User currentUser, Action<object, RoutedEventArgs> navigate)
         {
             InitializeComponent();
             this.book = book;
@@ -50,17 +51,19 @@ namespace Grahita.pages
                 Status.Text = "Dipinjam";
                 Status.Foreground = new SolidColorBrush(Colors.Red);
             }
-            if(currentUser != null && owner != null && currentUser.Id == owner.Id)
+            if (currentUser != null && owner != null && currentUser.Id == owner.Id)
             {
                 // Kalau mbuka bukunya sendiri
                 ButtonEdit.Visibility = Visibility.Visible;
                 ButtonPinjam.Visibility = Visibility.Collapsed;
-            } else
+            }
+            else
             {
                 // Kalau mbuka bukunya orang lain
-                ButtonEdit.Visibility= Visibility.Collapsed;
-                ButtonPinjam.Visibility= Visibility.Visible;
+                ButtonEdit.Visibility = Visibility.Collapsed;
+                ButtonPinjam.Visibility = Visibility.Visible;
             }
-        }   
+            Navigate = navigate;
+        }
     }
 }

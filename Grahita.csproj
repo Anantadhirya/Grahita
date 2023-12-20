@@ -170,6 +170,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\EditBukuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\KeteranganBukuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +197,9 @@
     </Compile>
     <Compile Include="pages\DashboardPage.xaml.cs">
       <DependentUpon>DashboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\EditBukuPage.xaml.cs">
+      <DependentUpon>EditBukuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\KeteranganBukuPage.xaml.cs">
       <DependentUpon>KeteranganBukuPage.xaml</DependentUpon>
