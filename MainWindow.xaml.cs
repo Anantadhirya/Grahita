@@ -98,13 +98,17 @@ namespace Grahita
             Navigate(Navigation.register);
         }
         
+        private void NavigateEditBuku(Book book)
+        {
+            mainFrame.Navigate(new EditBukuPage(book, Navigate));
+        }
         private void NavigateKeterangan(object sender, RoutedEventArgs e)
         {
             
             if (sender is Button button && button.DataContext is Book clickedBook)
             {
                
-                mainFrame.Navigate(new KeteranganBukuPage(clickedBook, user, isSignedIn, Navigate));
+                mainFrame.Navigate(new KeteranganBukuPage(clickedBook, user, isSignedIn, Navigate, NavigateEditBuku));
             }
         }
         private void SignOut(object sender, RoutedEventArgs e)
