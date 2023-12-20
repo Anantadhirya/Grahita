@@ -73,6 +73,18 @@ namespace Grahita.pages
         {
             SignInRequired.Visibility = isSignedIn ? Visibility.Collapsed : Visibility.Visible;
             KeteranganBuku.Visibility = isSignedIn ? Visibility.Visible : Visibility.Collapsed;
+
+            if (isSignedIn)
+            {
+                TriggerUserWindow();
+            }
+
+        }
+
+        private void TriggerUserWindow()
+        {
+            OwnerWindow ownerWindow = new OwnerWindow(owner);
+            ownerWindow.ShowDialog();
         }
 
         private void NavigateSignIn(object sender,RoutedEventArgs e)

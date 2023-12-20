@@ -162,6 +162,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OwnerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\BukuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,6 +196,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OwnerWindow.xaml.cs">
+      <DependentUpon>OwnerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\BukuPage.xaml.cs">
       <DependentUpon>BukuPage.xaml</DependentUpon>
     </Compile>
