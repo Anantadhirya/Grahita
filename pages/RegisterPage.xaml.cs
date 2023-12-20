@@ -77,5 +77,12 @@ namespace Grahita.pages
                 }
             }
         }
+        private void onEnter(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                onRegister(sender, null);
+            }
+        }
     }
 }

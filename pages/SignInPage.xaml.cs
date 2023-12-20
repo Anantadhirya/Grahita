@@ -65,5 +65,12 @@ namespace Grahita.pages
                 MessageBox.Show("Sign In berhasil", "", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+        private void onEnter(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                onSignIn(sender, null);
+            }
+        }
     }
 }
