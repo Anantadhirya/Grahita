@@ -22,22 +22,24 @@ namespace Grahita.pages
     public partial class KeteranganBukuPage : Page
     {
         Book book;
-        public KeteranganBukuPage(Book book)
+        User owner, currentUser;
+        public KeteranganBukuPage(Book book, User currentUser)
         {
             InitializeComponent();
             this.book = book;
-            Judul.Text = book.Title;
-            Gambar.Source = book.Image != null ? new BitmapImage(new Uri(book.Image)) : null;
-            Author.Text = book.Author;
-
+            this.currentUser = currentUser;
             using (var db = new GrahitaDBEntities())
             {
                 var query = from user in db.Users
                             where user.Id == book.Owner
                             select user;
-                Owner.Text = query.FirstOrDefault() != null ? query.First().Name : "";
+                this.owner = query.FirstOrDefault();
             }
 
+            Judul.Text = book.Title;
+            Gambar.Source = book.Image != null ? new BitmapImage(new Uri(book.Image)) : null;
+            Author.Text = book.Author;
+            Owner.Text = owner != null ? owner.Name : "";
             if (book.Available)
             {
                 Status.Text = "Tersedia";
@@ -47,6 +49,17 @@ namespace Grahita.pages
             {
                 Status.Text = "Dipinjam";
                 Status.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            if(currentUser != null && owner != null && currentUser.Id == owner.Id)
+            {
+                // Kalau mbuka bukunya sendiri
+                ButtonEdit.Visibility = Visibility.Visible;
+                ButtonPinjam.Visibility = Visibility.Collapsed;
+            } else
+            {
+                // Kalau mbuka bukunya orang lain
+                ButtonEdit.Visibility= Visibility.Collapsed;
+                ButtonPinjam.Visibility= Visibility.Visible;
             }
         }   
     }

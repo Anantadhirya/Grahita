@@ -103,7 +103,7 @@ namespace Grahita
         {
             if (sender is Button button && button.DataContext is Book clickedBook)
             {
-                mainFrame.Navigate(new KeteranganBukuPage(clickedBook));
+                mainFrame.Navigate(new KeteranganBukuPage(clickedBook, user));
             }
         }
     }
