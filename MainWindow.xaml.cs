@@ -73,6 +73,7 @@ namespace Grahita
                 case Navigation.tambahBuku:
                     mainFrame.Navigate(new TambahBukuPage(user, Navigate));
                     break;
+              
             }
         }
         private void SignIn(User user)
@@ -102,12 +103,8 @@ namespace Grahita
             
             if (sender is Button button && button.DataContext is Book clickedBook)
             {
-                void NavigateEdit(object s,RoutedEventArgs ev)
-                {
-                    mainFrame.Navigate(new EditBukuPage(clickedBook,Navigate));
-                }
-
-                mainFrame.Navigate(new KeteranganBukuPage(clickedBook, user, isSignedIn, NavigateEdit));
+               
+                mainFrame.Navigate(new KeteranganBukuPage(clickedBook, user, isSignedIn, Navigate));
             }
         }
         private void SignOut(object sender, RoutedEventArgs e)

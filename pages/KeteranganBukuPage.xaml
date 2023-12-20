@@ -17,6 +17,16 @@
     </Page.Resources>
 
     <Grid Background="{StaticResource bgColor-100}">
+        <Viewbox Name="SignInRequired" Visibility="Collapsed">
+            <StackPanel Width="500" Margin="100,0,100,0">
+                <TextBlock FontFamily="{StaticResource Default}" HorizontalAlignment="Center" Margin="0,0,0,10">
+            <Run Text="Anda perlu melakukan"/>
+            <Run Text="Sign In" FontWeight="Bold" FontFamily="{StaticResource DefaultBold}"/>
+            <Run Text="untuk mengakses meminjam buku."/>
+                </TextBlock>
+                <Button Width="150" Content="Sign In" Click="NavigateSignIn" Style="{StaticResource DefaultButton}"/>
+            </StackPanel>
+        </Viewbox>
         <ScrollViewer Name="KeteranganBuku" VerticalScrollBarVisibility="Auto">
             <Viewbox VerticalAlignment="Top" Stretch="UniformToFill" Margin="0,0,0,30">
                 <StackPanel Width="600" Margin="100,0,100,0">
@@ -54,10 +64,10 @@
 
                             </StackPanel>
                             <StackPanel Name="ButtonPinjam" Margin="300,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                                <Button Width="150" Content="Pinjam Buku" Style="{StaticResource DefaultButton}"/>
+                                <Button Width="150" Content="Pinjam Buku" Style="{StaticResource DefaultButton}" Click="onPinjam"/>
                             </StackPanel>
                             <StackPanel Name="ButtonEdit" Margin="140,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Horizontal">
-                                <Button Width="150" Content="Edit Buku" Style="{StaticResource DefaultButton}" Click="onClick"/>
+                                <Button Width="150" Content="Edit Buku" Style="{StaticResource DefaultButton}"/>
                                 <Button Width="150" Content="Ubah Status" Style="{StaticResource DefaultButton}" Margin="10,0,0,0" Click="onChangeStatus"/>
                             </StackPanel>
                         </Grid>
