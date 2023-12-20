@@ -42,8 +42,8 @@
             <!-- Menu Login/Register -->
             <Viewbox Name="AuthMenu" Grid.Column="2" HorizontalAlignment="Right">
                 <Menu Background="Transparent" Foreground="White" FontFamily="{StaticResource Default}">
-                    <MenuItem Header="Sign In" Padding="10,5,10,5" Click="NavigateSignIn"/>
-                    <MenuItem Header="Register" Padding="10,5,10,5" Click="NavigateRegister"/>
+                    <MenuItem Header="Sign In" Padding="10,5,10,5" Click="NavigateSignIn" Style="{StaticResource HoverMenuItem}"/>
+                    <MenuItem Header="Register" Padding="10,5,10,5" Click="NavigateRegister" Style="{StaticResource HoverMenuItem}"/>
                 </Menu>
             </Viewbox>
             <!-- Menu Profile -->
