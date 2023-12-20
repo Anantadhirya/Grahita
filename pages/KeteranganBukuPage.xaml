@@ -22,7 +22,7 @@
                 <TextBlock FontFamily="{StaticResource Default}" HorizontalAlignment="Center" Margin="0,0,0,10">
             <Run Text="Anda perlu melakukan"/>
             <Run Text="Sign In" FontWeight="Bold" FontFamily="{StaticResource DefaultBold}"/>
-            <Run Text="untuk mengakses meminjam buku."/>
+            <Run Text="untuk meminjam buku."/>
                 </TextBlock>
                 <Button Width="150" Content="Sign In" Click="NavigateSignIn" Style="{StaticResource DefaultButton}"/>
             </StackPanel>
