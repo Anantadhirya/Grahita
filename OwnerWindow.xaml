@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Grahita"
         mc:Ignorable="d"
         Title="OwnerWindow" Height="300" Width="300"
-        Background="Bisque"
         >
 
     <Window.Resources>
@@ -18,7 +17,7 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
+    <Grid Background="{StaticResource bgColor-100}">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"> 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="15,0,0,0">
                 <TextBlock Text="Nama : " FontFamily="{StaticResource DefaultBold}" />
