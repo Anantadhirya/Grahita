@@ -24,6 +24,7 @@ namespace Grahita.pages
     {
         private User user;
         private Action<MainWindow.Navigation> Navigate;
+        private string imagePath = "";
         public TambahBukuPage(User user, Action<MainWindow.Navigation> Navigate)
         {
             InitializeComponent();
@@ -48,8 +49,8 @@ namespace Grahita.pages
 
             if (openFileDialog.ShowDialog() == true)
             {
-                string imagePath = openFileDialog.FileName;
-                Gambar.Text = imagePath;
+                imagePath = openFileDialog.FileName;
+                Gambar.Source = new BitmapImage(new Uri(imagePath));
             }
         }
         private async void onTambahBuku(object sender, RoutedEventArgs e)
@@ -57,12 +58,12 @@ namespace Grahita.pages
             bool valid = true;
             check(Judul.Text, ref JudulError, "Judul", ref valid);
             check(Author.Text, ref AuthorError, "Author", ref valid);
-            check(Gambar.Text, ref ImageError, "Gambar", ref valid);
+            check(imagePath, ref ImageError, "Gambar", ref valid);
             if (valid)
             {
                 using (var db = new GrahitaDBEntities())
                 {
-                    string imageUrl = await BlobUploader.Main(Gambar.Text);
+                    string imageUrl = await BlobUploader.Main(imagePath);
                     var book = new Book { Title = Judul.Text, Author = Author.Text, Image = imageUrl, Owner = user.Id, Available = true };
                     db.Books.Add(book);
                     db.SaveChanges();
