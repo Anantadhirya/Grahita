@@ -23,8 +23,7 @@ namespace Grahita.pages
     {
         Book book;
         User owner, currentUser;
-        Action<object, RoutedEventArgs> Navigate;
-        public KeteranganBukuPage(Book book, User currentUser, Action<object, RoutedEventArgs> navigate)
+        public KeteranganBukuPage(Book book, User currentUser)
         {
             InitializeComponent();
             this.book = book;
@@ -63,7 +62,37 @@ namespace Grahita.pages
                 ButtonEdit.Visibility = Visibility.Collapsed;
                 ButtonPinjam.Visibility = Visibility.Visible;
             }
-            Navigate = navigate;
         }
+
+        private void onChangeStatus(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result=MessageBox.Show("Apakah Anda yakin?", "Ubah status buku", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                using (var db = new GrahitaDBEntities())
+                {
+
+                    var updatedBook = db.Books.Find(book.Id);
+                    updatedBook.Available = !updatedBook.Available;
+                    db.SaveChanges();
+
+                    if (updatedBook.Available)
+                    {
+                        Status.Text = "Tersedia";
+                        Status.Foreground = new SolidColorBrush(Colors.Green);
+                    }
+                    else
+                    {
+                        Status.Text = "Dipinjam";
+                        Status.Foreground = new SolidColorBrush(Colors.Red);
+                    }
+
+                    MessageBox.Show("Status buku diubah", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
+
+       
+
     }
 }
