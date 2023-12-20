@@ -35,7 +35,7 @@
             <!-- Menu Navbar -->
             <Viewbox Grid.Column="1">
                 <Menu Background="Transparent" Foreground="White" FontFamily="{StaticResource Default}">
-                    <MenuItem Header="Buku" Padding="10,5,10,5" Click="NavigateBuku" Style="{StaticResource HoverMenuItem}"/>
+                    <MenuItem Header="Buku" Padding="10,5,10,5" Click="NavigateBuku"/>
                     <MenuItem Header="Dashboard" Padding="10,5,10,5" Click="NavigateDasboard"/>
                 </Menu>
             </Viewbox>
@@ -49,7 +49,7 @@
             <!-- Menu Profile -->
             <Viewbox Name="ProfileMenu" Grid.Column="2" HorizontalAlignment="Right" Visibility="Collapsed">
                 <Menu Background="Transparent" Foreground="White" FontFamily="{StaticResource Default}">
-                    <MenuItem Name="Profile" Padding="10,5,10,5" >
+                    <MenuItem Name="Profile" Padding="10,5,10,5">
                         <MenuItem Header="Profile" Foreground="{StaticResource titleColor-100}" BorderThickness="0"/>
                         <MenuItem Header="Sign Out" Click="SignOut"  Foreground="{StaticResource titleColor-100}" BorderThickness="0"/>
                     </MenuItem>

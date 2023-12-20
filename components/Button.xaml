@@ -43,24 +43,4 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <Style x:Key="HoverMenuItem" TargetType="MenuItem">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="MenuItem">
-                    <Border Background="{TemplateBinding Background}" Padding="10,5,10,5">
-                        <TextBlock Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Header}" />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="{StaticResource titleColor-300}"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
 </ResourceDictionary>
