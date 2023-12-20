@@ -26,11 +26,18 @@
                 </StackPanel>
             </Viewbox>
             <!-- Search Bar -->
-            <Viewbox>
+            <Viewbox Stretch="Uniform">
                 <Border Width="400" Height="20" Margin="100,0,100,0" BorderBrush="{StaticResource bgColor-200}" BorderThickness="2" CornerRadius="5">
                     <Grid Margin="2">
                         <TextBlock Name="SearchPlaceholder" Text="Search" FontFamily="{StaticResource Default}" FontSize="9" TextAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBox Name="SearchText" GotFocus="onSearchGotFocus" LostFocus="onSearchLostFocus" KeyDown="onSearchEnter" BorderThickness="0" Background="Transparent" FontFamily="{StaticResource Default}" FontSize="9" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBox Name="SearchText" GotFocus="onSearchGotFocus" LostFocus="onSearchLostFocus" KeyDown="onSearchEnter" TextChanged="onTextChange" BorderThickness="0" Background="Transparent" FontFamily="{StaticResource Default}" FontSize="9" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <Button Name="ClearButton" Click="onClear" Visibility="Collapsed" Width="10" Height="10" HorizontalAlignment="Right" BorderBrush="Transparent" Background="Transparent">
+                            <Viewbox>
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M2,2 L22,22 M22,2 L2,22" Stroke="Black" StrokeThickness="2"/>
+                                </Canvas>
+                            </Viewbox>
+                        </Button>
                     </Grid>
                 </Border>
             </Viewbox>

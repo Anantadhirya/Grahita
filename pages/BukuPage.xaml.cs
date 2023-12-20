@@ -19,7 +19,7 @@ namespace Grahita.pages
 {
     public partial class BukuPage : Page
     {
-        Action<object,RoutedEventArgs> onClick;
+        Action<object, RoutedEventArgs> onClick;
         private Point startPoint;
         private double startHorizontalOffset;
         private bool isButtonClick;
@@ -38,37 +38,52 @@ namespace Grahita.pages
         }
 
         // Search bar
+        private void onTextChange(object sender, RoutedEventArgs e)
+        {
+            ClearButton.Visibility = SearchText.Text == "" ? Visibility.Collapsed : Visibility.Visible;
+        }
         private void onSearchGotFocus(object sender, RoutedEventArgs e)
         {
             SearchPlaceholder.Visibility = Visibility.Collapsed;
         }
         private void onSearchLostFocus(object sender, RoutedEventArgs e)
         {
-            if(SearchText.Text == "") SearchPlaceholder.Visibility = Visibility.Visible;
+            if (SearchText.Text == "") SearchPlaceholder.Visibility = Visibility.Visible;
+        }
+        private void filterSearch()
+        {
+            var searchString = SearchText.Text;
+            if (searchString == "")
+            {
+                TextBukuTerbaru.Visibility = Visibility.Visible;
+                CarouselScrollViewer.Visibility = Visibility.Visible;
+                TextDaftarBuku.Text = "Daftar Buku";
+            }
+            else
+            {
+                TextBukuTerbaru.Visibility = Visibility.Collapsed;
+                CarouselScrollViewer.Visibility = Visibility.Collapsed;
+                TextDaftarBuku.Text = "Hasil Pencarian";
+            }
+            using (var db = new GrahitaDBEntities())
+            {
+                var searchWords = searchString.Split(' ').Where(i => !string.IsNullOrEmpty(i));
+                var query = from b in db.Books orderby b.Title where searchWords.All(searchWord => b.Title.Contains(searchWord)) select b;
+                BookList.ItemsSource = query.Take(100).ToList();
+            }
         }
         private void onSearchEnter(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
-                var searchString = SearchText.Text;
-                if(searchString == "")
-                {
-                    TextBukuTerbaru.Visibility = Visibility.Visible;
-                    CarouselScrollViewer.Visibility = Visibility.Visible;
-                    TextDaftarBuku.Text = "Daftar Buku";
-                } else
-                {
-                    TextBukuTerbaru.Visibility =Visibility.Collapsed;
-                    CarouselScrollViewer.Visibility = Visibility.Collapsed;
-                    TextDaftarBuku.Text = "Hasil Pencarian";
-                }
-                using(var db = new GrahitaDBEntities())
-                {
-                    var searchWords = searchString.Split(' ').Where(i => !string.IsNullOrEmpty(i));
-                    var query = from b in db.Books orderby b.Title where searchWords.All(searchWord => b.Title.Contains(searchWord)) select b;
-                    BookList.ItemsSource = query.Take(100).ToList();
-                }
+                filterSearch();
             }
+        }
+        private void onClear(object sender, RoutedEventArgs e)
+        {
+            SearchText.Text = "";
+            onSearchLostFocus(sender, null);
+            filterSearch();
         }
 
         // Fungsi-fungsi untuk swipe carousel
