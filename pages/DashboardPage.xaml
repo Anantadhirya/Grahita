@@ -85,10 +85,6 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <!-- Temp -->
-                    <Button x:Name="btnLoadImage" Content="Load Image" Click="btnLoadImage_Click" Margin="0,100,0,0" Style="{StaticResource DefaultButton}"/>
-                    <TextBlock x:Name="txtImagePath" Grid.Row="2" Text="Image Path will be displayed here." TextWrapping="Wrap" VerticalAlignment="Center"/>
-                    <Image x:Name="pictureBox" Grid.Row="3" Stretch="Uniform"/>
                 </StackPanel>
             </Viewbox>
         </ScrollViewer>

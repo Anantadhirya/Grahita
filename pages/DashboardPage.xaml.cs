@@ -48,8 +48,7 @@ namespace Grahita.pages
             {
                 using (var db = new GrahitaDBEntities())
                 {
-                    // var query = from book in db.Books where book.Owner == user.Id select book;
-                    var query = from book in db.Books select book;
+                    var query = from book in db.Books where book.Owner == user.Id select book;
                     if(query.Any())
                     {
                         BookListText.Visibility = Visibility.Visible;
@@ -66,6 +65,14 @@ namespace Grahita.pages
         {
             Navigate(MainWindow.Navigation.tambahBuku);
         }
+
+        /*
+        <!-- Temp -->
+        <Button x:Name="btnLoadImage" Content="Load Image" Click="btnLoadImage_Click" Margin="0,100,0,0" Style="{StaticResource DefaultButton}"/>
+        <TextBlock x:Name="txtImagePath" Grid.Row="2" Text="Image Path will be displayed here." TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <Image x:Name="pictureBox" Grid.Row="3" Stretch="Uniform"/>
+
+
         private async void btnLoadImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -80,5 +87,6 @@ namespace Grahita.pages
 
             }
         }
+        */
     }
 }
