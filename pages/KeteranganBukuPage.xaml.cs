@@ -23,7 +23,9 @@ namespace Grahita.pages
     {
         Book book;
         User owner, currentUser;
-        public KeteranganBukuPage(Book book, User currentUser)
+        bool isSignedIn;
+        Action<object ,RoutedEventArgs > onClick;
+        public KeteranganBukuPage(Book book, User currentUser, bool isSignedIn, Action<object,RoutedEventArgs> onClick)
         {
             InitializeComponent();
             this.book = book;
@@ -62,7 +64,11 @@ namespace Grahita.pages
                 ButtonEdit.Visibility = Visibility.Collapsed;
                 ButtonPinjam.Visibility = Visibility.Visible;
             }
+
+            this.isSignedIn = isSignedIn;
+            this.onClick = onClick;
         }
+
 
         private void onChangeStatus(object sender, RoutedEventArgs e)
         {

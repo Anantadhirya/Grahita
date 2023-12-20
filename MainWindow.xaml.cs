@@ -1,4 +1,5 @@
-﻿using Grahita.components;
+﻿using Azure.Storage.Blobs.Models;
+using Grahita.components;
 using Grahita.pages;
 using System;
 using System.Collections.Generic;
@@ -51,6 +52,7 @@ namespace Grahita
             register,
             tambahBuku,
             keteranganBuku,
+            editBuku,
         }
         public void Navigate(Navigation target)
         {
@@ -94,17 +96,24 @@ namespace Grahita
         {
             Navigate(Navigation.register);
         }
+        
+        private void NavigateKeterangan(object sender, RoutedEventArgs e)
+        {
+            
+            if (sender is Button button && button.DataContext is Book clickedBook)
+            {
+                void NavigateEdit(object s,RoutedEventArgs ev)
+                {
+                    mainFrame.Navigate(new EditBukuPage(clickedBook,Navigate));
+                }
+
+                mainFrame.Navigate(new KeteranganBukuPage(clickedBook, user, isSignedIn, NavigateEdit));
+            }
+        }
         private void SignOut(object sender, RoutedEventArgs e)
         {
             setSignedIn(false, null);
             Navigate(Navigation.buku);
-        }
-        private void NavigateKeterangan(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button && button.DataContext is Book clickedBook)
-            {
-                mainFrame.Navigate(new KeteranganBukuPage(clickedBook, user));
-            }
         }
     }
 }

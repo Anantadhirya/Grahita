@@ -25,11 +25,14 @@ namespace Grahita.pages
     {
         Book book;
         private string imagePath = "";
-        public EditBukuPage(Book book)
+        private Action<MainWindow.Navigation> Navigate;
+
+        public EditBukuPage(Book book, Action<MainWindow.Navigation> navigate)
         {
             InitializeComponent();
             this.book = book;
             initDefaultValue();
+            Navigate = navigate;
         }
 
         public void initDefaultValue()
@@ -78,6 +81,7 @@ namespace Grahita.pages
                     dbBook.Image =imagePath;
                     db.SaveChanges();
                     MessageBox.Show("Edit buku berhasil", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Navigate(MainWindow.Navigation.dashboard);
                 }
             }
         }
