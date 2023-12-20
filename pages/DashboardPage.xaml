@@ -27,7 +27,7 @@
                 <Button Width="150" Content="Sign In" Click="NavigateSignIn" Style="{StaticResource DefaultButton}"/>
             </StackPanel>
         </Viewbox>
-        <ScrollViewer Name="Dashboard" Visibility="Visible">
+        <ScrollViewer Name="Dashboard" VerticalScrollBarVisibility="Auto">
             <Viewbox VerticalAlignment="Top" Stretch="UniformToFill" Margin="0,0,0,30">
                 <StackPanel Width="600" Margin="100,0,100,0">
                     <!-- Profile Picture & Username -->

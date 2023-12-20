@@ -17,7 +17,7 @@
     </Page.Resources>
 
     <Grid Background="{StaticResource bgColor-100}">
-        <ScrollViewer Name="KeteranganBuku" Visibility="Visible">
+        <ScrollViewer Name="KeteranganBuku" VerticalScrollBarVisibility="Auto">
             <Viewbox VerticalAlignment="Top" Stretch="UniformToFill" Margin="0,0,0,30">
                 <StackPanel Width="600" Margin="100,0,100,0">
                     <!-- Judul Buku -->
