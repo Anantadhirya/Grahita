@@ -39,7 +39,6 @@ namespace Grahita.pages
         {
             Judul.Text = book.Title;
             Author.Text = book.Author;
-            imagePath = book.Image;
             Gambar.Source = new ImageSourceConverter().ConvertFromString(book.Image) as ImageSource;
         }
 
@@ -70,16 +69,18 @@ namespace Grahita.pages
             bool valid = true;
             check(Judul.Text, ref JudulError, "Judul", ref valid);
             check(Author.Text, ref AuthorError, "Author", ref valid);
-            check(imagePath, ref ImageError, "Gambar", ref valid);
             if (valid)
             {
                 using (var db = new GrahitaDBEntities())
                 {
-                    string imageUrl = await BlobUploader.Main(imagePath);
                     var dbBook = db.Books.Find(book.Id);
-                    dbBook.Author =Author.Text;
-                    dbBook.Title =Judul.Text;
-                    dbBook.Image =imagePath;
+                    dbBook.Author = Author.Text;
+                    dbBook.Title = Judul.Text;
+                    if(imagePath != "")
+                    {
+                        string imageUrl = await BlobUploader.Main(imagePath);
+                        dbBook.Image = imageUrl;
+                    }
                     db.SaveChanges();
                     MessageBox.Show("Perubahan Disimpan", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     Navigate(MainWindow.Navigation.dashboard);
