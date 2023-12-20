@@ -54,11 +54,24 @@ namespace Grahita
         }
         public void Navigate(Navigation target)
         {
-            if (target == Navigation.buku) mainFrame.Navigate(new BukuPage(NavigateKeterangan));
-            else if (target == Navigation.dashboard) mainFrame.Navigate(new DashboardPage(isSignedIn, user, Navigate, NavigateKeterangan));
-            else if (target == Navigation.signin) mainFrame.Navigate(new SignInPage(SignIn));
-            else if (target == Navigation.register) mainFrame.Navigate(new RegisterPage(SignIn));
-            else if (target == Navigation.tambahBuku) mainFrame.Navigate(new TambahBukuPage(user, Navigate));
+            switch(target)
+            {
+                case Navigation.buku:
+                    mainFrame.Navigate(new BukuPage(NavigateKeterangan));
+                    break;
+                case Navigation.dashboard:
+                    mainFrame.Navigate(new DashboardPage(isSignedIn, user, Navigate, NavigateKeterangan));
+                    break;
+                case Navigation.signin:
+                    mainFrame.Navigate(new SignInPage(SignIn));
+                    break;
+                case Navigation.register:
+                    mainFrame.Navigate(new RegisterPage(SignIn));
+                    break;
+                case Navigation.tambahBuku:
+                    mainFrame.Navigate(new TambahBukuPage(user, Navigate));
+                    break;
+            }
         }
         private void SignIn(User user)
         {
