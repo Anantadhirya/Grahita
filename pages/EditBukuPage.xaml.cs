@@ -38,7 +38,8 @@ namespace Grahita.pages
         public void initDefaultValue()
         {
             Judul.Text = book.Title;
-            Author.Text=book.Author;
+            Author.Text = book.Author;
+            imagePath = book.Image;
             Gambar.Source = new ImageSourceConverter().ConvertFromString(book.Image) as ImageSource;
         }
 
@@ -53,7 +54,7 @@ namespace Grahita.pages
             errorText.Visibility = errorMessage != "" ? Visibility.Visible : Visibility.Collapsed;
             if (errorMessage != "") valid = false;
         }
-        private void onTambahGambar(object sender, RoutedEventArgs e)
+        private void onUbahGambar(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg;*.gif;*.bmp)|*.png;*.jpg;*.jpeg;*.gif;*.bmp|All files (*.*)|*.*";
@@ -64,7 +65,7 @@ namespace Grahita.pages
                 Gambar.Source = new BitmapImage(new Uri(imagePath));
             }
         }
-        private async void onTambahBuku(object sender, RoutedEventArgs e)
+        private async void onSave(object sender, RoutedEventArgs e)
         {
             bool valid = true;
             check(Judul.Text, ref JudulError, "Judul", ref valid);
@@ -80,11 +81,10 @@ namespace Grahita.pages
                     dbBook.Title =Judul.Text;
                     dbBook.Image =imagePath;
                     db.SaveChanges();
-                    MessageBox.Show("Edit buku berhasil", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Perubahan Disimpan", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     Navigate(MainWindow.Navigation.dashboard);
                 }
             }
         }
-
     }
 }
