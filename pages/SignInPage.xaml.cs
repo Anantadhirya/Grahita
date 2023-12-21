@@ -22,10 +22,12 @@ namespace Grahita.pages
     public partial class SignInPage : Page
     {
         Action<User> SignIn;
-        public SignInPage(Action<User> SignIn)
+        Action<MainWindow.Navigation> Navigate;
+        public SignInPage(Action<User> SignIn, Action<MainWindow.Navigation> Navigate)
         {
             InitializeComponent();
             this.SignIn = SignIn;
+            this.Navigate = Navigate;
         }
         private void setError(TextBlock errorText, string message)
         {
@@ -71,6 +73,11 @@ namespace Grahita.pages
             {
                 onSignIn(sender, null);
             }
+        }
+
+        private void NavigateRegister(object sender, RoutedEventArgs e)
+        {
+            Navigate(MainWindow.Navigation.register);
         }
     }
 }

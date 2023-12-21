@@ -65,7 +65,7 @@ namespace Grahita
                     mainFrame.Navigate(new DashboardPage(isSignedIn, user, Navigate, NavigateKeterangan));
                     break;
                 case Navigation.signin:
-                    mainFrame.Navigate(new SignInPage(SignIn));
+                    mainFrame.Navigate(new SignInPage(SignIn, Navigate));
                     break;
                 case Navigation.register:
                     mainFrame.Navigate(new RegisterPage(SignIn));
