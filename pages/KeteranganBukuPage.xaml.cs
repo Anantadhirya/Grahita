@@ -43,6 +43,9 @@ namespace Grahita.pages
             Gambar.Source = book.Image != null ? new BitmapImage(new Uri(book.Image)) : null;
             Author.Text = book.Author;
             Owner.Text = owner != null ? owner.Name : "";
+            NamaPemilik.Text = owner != null ? owner.Name : "";
+            KontakPemilik.Text = owner != null ? owner.Contact : "";
+            LokasiPemilik.Text = owner != null ? owner.Location : "";
             updateStatusBuku();
             if (currentUser != null && owner != null && currentUser.Id == owner.Id)
             {
@@ -90,8 +93,11 @@ namespace Grahita.pages
 
         private void TriggerUserWindow()
         {
-            OwnerWindow ownerWindow = new OwnerWindow(owner);
-            ownerWindow.ShowDialog();
+            KeteranganPeminjaman.Visibility = Visibility.Visible;
+        }
+        private void CloseUserWindow(object sender, RoutedEventArgs e)
+        {
+            KeteranganPeminjaman.Visibility = Visibility.Collapsed;
         }
 
         private void NavigateSignIn(object sender,RoutedEventArgs e)
