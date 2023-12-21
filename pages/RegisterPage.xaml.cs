@@ -90,5 +90,9 @@ namespace Grahita.pages
         {
             Navigate(MainWindow.Navigation.signin);
         }
+        private void Back(object sender, MouseButtonEventArgs e)
+        {
+            Navigate(MainWindow.Navigation.back);
+        }
     }
 }

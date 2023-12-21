@@ -46,6 +46,7 @@ namespace Grahita
         }
         public enum Navigation
         {
+            back,
             buku,
             dashboard,
             signin,
@@ -59,6 +60,12 @@ namespace Grahita
         {
             switch(target)
             {
+                case Navigation.back:
+                    if(mainFrame.CanGoBack)
+                    {
+                        mainFrame.GoBack();
+                    }
+                    break;
                 case Navigation.buku:
                     mainFrame.Navigate(new BukuPage(NavigateKeterangan));
                     break;

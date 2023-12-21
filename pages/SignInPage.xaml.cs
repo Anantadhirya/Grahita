@@ -79,5 +79,9 @@ namespace Grahita.pages
         {
             Navigate(MainWindow.Navigation.register);
         }
+        private void Back(object sender, MouseButtonEventArgs e)
+        {
+            Navigate(MainWindow.Navigation.back);
+        }
     }
 }

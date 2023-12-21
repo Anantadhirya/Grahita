@@ -64,5 +64,18 @@
                 </StackPanel>
             </StackPanel>
         </Viewbox>
+        <!-- Tombol Kembali -->
+        <Viewbox VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" Width="100" Margin="10,10,800,10" MouseDown="Back" Cursor="Hand">
+                <Viewbox Width="10" Height="10">
+                    <Canvas Width="20" Height="20">
+                        <Line X1="0" Y1="10" X2="10" Y2="0" Stroke="Black" StrokeThickness="2"/>
+                        <Line X1="0" Y1="10" X2="10" Y2="20" Stroke="Black" StrokeThickness="2"/>
+                        <Line X1="0" Y1="10" X2="20" Y2="10" Stroke="Black" StrokeThickness="2"/>
+                    </Canvas>
+                </Viewbox>
+                <TextBlock Margin="5,0,0,0" Text="Kembali" VerticalAlignment="Center" FontSize="13" FontFamily="{StaticResource Default}"/>
+            </StackPanel>
+        </Viewbox>
     </Grid>
 </Page>

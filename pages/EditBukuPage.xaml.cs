@@ -102,5 +102,10 @@ namespace Grahita.pages
                 }
             }
         }
+
+        private void Back(object sender, MouseButtonEventArgs e)
+        {
+            Navigate(MainWindow.Navigation.back);
+        }
     }
 }
