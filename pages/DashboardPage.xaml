@@ -37,7 +37,7 @@
                                 <EllipseGeometry RadiusX="50" RadiusY="50" Center="50,50" />
                             </Border.Clip>
                             <Viewbox>
-                                <Image Source="/public/images/blank_profile.jpg"/>
+                                <Image Name="Gambar" Width="100" Height="100" Stretch="UniformToFill"/>
                             </Viewbox>
                         </Border>
                         <StackPanel VerticalAlignment="Center" Margin="15,0,0,0">

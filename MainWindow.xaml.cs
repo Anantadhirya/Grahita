@@ -53,6 +53,7 @@ namespace Grahita
             tambahBuku,
             keteranganBuku,
             editBuku,
+            editProfil,
         }
         public void Navigate(Navigation target)
         {
@@ -73,7 +74,9 @@ namespace Grahita
                 case Navigation.tambahBuku:
                     mainFrame.Navigate(new TambahBukuPage(user, Navigate));
                     break;
-              
+                case Navigation.editProfil:
+                    mainFrame.Navigate(new EditProfilePage(user, Navigate, SignIn));
+                    break;
             }
         }
         private void SignIn(User user)
@@ -96,6 +99,10 @@ namespace Grahita
         private void NavigateRegister(object sender, RoutedEventArgs e)
         {
             Navigate(Navigation.register);
+        }
+        private void NavigateEditProfil(object sender, RoutedEventArgs e)
+        {
+            Navigate(Navigation.editProfil);
         }
         
         private void NavigateEditBuku(Book book)

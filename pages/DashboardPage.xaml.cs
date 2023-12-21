@@ -43,6 +43,7 @@ namespace Grahita.pages
             SignInRequired.Visibility = !isSignedIn ? Visibility.Visible : Visibility.Collapsed;
             Dashboard.Visibility = isSignedIn ? Visibility.Visible : Visibility.Collapsed;
             Username.Text = user?.Name;
+            Gambar.Source = new BitmapImage(new Uri(user?.Image != null ? user?.Image : "pack://application:,,,/public/images/blank_profile.jpg"));
             BookListText.Visibility = Visibility.Collapsed;
             if(user != null)
             {
