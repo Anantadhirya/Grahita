@@ -46,6 +46,7 @@ namespace Grahita.pages
             NamaPemilik.Text = owner != null ? owner.Name : "";
             KontakPemilik.Text = owner != null ? owner.Contact : "";
             LokasiPemilik.Text = owner != null ? owner.Location : "";
+            GambarPemilik.Source = new BitmapImage(new Uri(owner != null && owner.Image != null ? owner.Image : "pack://application:,,,/public/images/blank_profile.jpg"));
             updateStatusBuku();
             if (currentUser != null && owner != null && currentUser.Id == owner.Id)
             {

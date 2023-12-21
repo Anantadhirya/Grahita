@@ -36,6 +36,7 @@
                     </StackPanel>
                     <!-- Identitas Buku -->
                     <StackPanel Orientation="Horizontal" Margin="0,15,0,10">
+                        <!-- Gambar Buku -->
                         <Border Width="150" Height="200" CornerRadius="15" Background="{StaticResource bgColor-200}">
                             <Border.Clip>
                                 <RectangleGeometry Rect="0,0,150,200" RadiusX="15" RadiusY="15"/>
@@ -47,16 +48,28 @@
 
                         <Grid>
                             <StackPanel>
+                                <!-- Author -->
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="15,0,0,0">
                                     <TextBlock Text="Author : " FontFamily="{StaticResource DefaultBold}" />
                                     <TextBlock Name="Author" FontFamily="{StaticResource Default}"/>
                                 </StackPanel>
 
+                                <!-- Pemilik -->
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="15,0,0,0">
                                     <TextBlock Text="Pemilik Buku : " FontFamily="{StaticResource DefaultBold}" />
+                                    <Border Width="15" Height="15" CornerRadius="7.5">
+                                        <Border.Clip>
+                                            <EllipseGeometry RadiusX="7.5" RadiusY="7.5" Center="7.5,7.5" />
+                                        </Border.Clip>
+                                        <Viewbox>
+                                            <Image Name="GambarPemilik" Width="100" Height="100" Stretch="UniformToFill" />
+                                        </Viewbox>
+                                    </Border>
+                                    <TextBlock Text=" " />
                                     <TextBlock Name="Owner" FontFamily="{StaticResource Default}"/>
                                 </StackPanel>
 
+                                <!-- Status Availability -->
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="15,0,0,0">
                                     <TextBlock Text="Status : " FontFamily="{StaticResource DefaultBold}" />
                                     <TextBlock Name="Status" FontFamily="{StaticResource Default}"/>
