@@ -8,6 +8,7 @@
         <Setter Property="Background" Value="{StaticResource titleColor-200}"/>
         <Setter Property="Foreground" Value="{StaticResource bgColor-100}" />
         <Setter Property="FontFamily" Value="{StaticResource Default}" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -27,6 +28,7 @@
     <Style x:Key="BookButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{StaticResource bgColor-200}" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">

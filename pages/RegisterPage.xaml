@@ -58,6 +58,10 @@
                 <StackPanel Margin="0,15,0,5">
                     <Button Width="150" Content="Register" Click="onRegister" Style="{StaticResource DefaultButton}"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,35,0,5" HorizontalAlignment="Center">
+                    <TextBlock Text="Sudah punya akun? " FontFamily="{StaticResource Default}" Foreground="{StaticResource titleColor-300}"/>
+                    <TextBlock Text="Sign In" Cursor="Hand" TextDecorations="Underline" FontFamily="{StaticResource DefaultBold}" Foreground="{StaticResource titleColor-200}" MouseDown="NavigateSignIn"/>
+                </StackPanel>
             </StackPanel>
         </Viewbox>
     </Grid>

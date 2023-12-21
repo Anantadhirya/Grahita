@@ -22,10 +22,12 @@ namespace Grahita.pages
     public partial class RegisterPage : Page
     {
         Action<User> SignIn;
-        public RegisterPage(Action<User> SignIn)
+        Action<MainWindow.Navigation> Navigate;
+        public RegisterPage(Action<User> SignIn, Action<MainWindow.Navigation> navigate)
         {
             InitializeComponent();
             this.SignIn = SignIn;
+            Navigate = navigate;
         }
         private void check(string text, ref TextBlock errorText, string type, ref bool valid, string password = "")
         {
@@ -83,6 +85,10 @@ namespace Grahita.pages
             {
                 onRegister(sender, null);
             }
+        }
+        private void NavigateSignIn(object sender, RoutedEventArgs e)
+        {
+            Navigate(MainWindow.Navigation.signin);
         }
     }
 }

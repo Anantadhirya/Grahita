@@ -81,7 +81,7 @@
             <Viewbox>
                 <Border Width="300" Margin="300,0,300,0" CornerRadius="5" BorderBrush="{StaticResource bgColor-200}" BorderThickness="2" Background="{StaticResource bgColor-100}">
                     <Grid>
-                        <Button Click="CloseUserWindow" Width="10" Height="10" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,3,0" BorderBrush="Transparent" Background="Transparent">
+                        <Button Click="CloseUserWindow" Cursor="Hand" Width="10" Height="10" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,3,0" BorderBrush="Transparent" Background="Transparent">
                             <Viewbox>
                                 <Canvas Width="24" Height="24">
                                     <Path Data="M2,2 L22,22 M22,2 L2,22" Stroke="{StaticResource titleColor-200}" StrokeThickness="2"/>

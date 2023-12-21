@@ -31,7 +31,7 @@
                     <Grid Margin="2">
                         <TextBlock Name="SearchPlaceholder" Text="Search" FontFamily="{StaticResource Default}" FontSize="9" TextAlignment="Center" VerticalAlignment="Center"/>
                         <TextBox Name="SearchText" GotFocus="onSearchGotFocus" LostFocus="onSearchLostFocus" KeyDown="onSearchEnter" TextChanged="onTextChange" BorderThickness="0" Background="Transparent" FontFamily="{StaticResource Default}" FontSize="9" TextAlignment="Center" VerticalAlignment="Center"/>
-                        <Button Name="ClearButton" Click="onClear" Visibility="Collapsed" Width="10" Height="10" HorizontalAlignment="Right" BorderBrush="Transparent" Background="Transparent">
+                        <Button Name="ClearButton" Click="onClear" Cursor="Hand" Visibility="Collapsed" Width="10" Height="10" HorizontalAlignment="Right" BorderBrush="Transparent" Background="Transparent">
                             <Viewbox>
                                 <Canvas Width="24" Height="24">
                                     <Path Data="M2,2 L22,22 M22,2 L2,22" Stroke="Black" StrokeThickness="2"/>
