@@ -75,7 +75,7 @@ namespace Grahita
                     mainFrame.Navigate(new TambahBukuPage(user, Navigate));
                     break;
                 case Navigation.editProfil:
-                    mainFrame.Navigate(new EditProfilePage(user, Navigate, SignIn));
+                    mainFrame.Navigate(new EditProfilePage(user, Navigate, SignIn, SignOut));
                     break;
             }
         }

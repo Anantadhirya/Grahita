@@ -26,12 +26,14 @@ namespace Grahita.pages
         private string imagePath = "";
         private Action<MainWindow.Navigation> Navigate;
         private Action<User> UpdateSignIn;
-        public EditProfilePage(User user, Action<MainWindow.Navigation> Navigate, Action<User> UpdateSignIn)
+        private Action<object, RoutedEventArgs> SignOut;
+        public EditProfilePage(User user, Action<MainWindow.Navigation> Navigate, Action<User> UpdateSignIn, Action<object, RoutedEventArgs> SignOut)
         {
             InitializeComponent();
             this.user = user;
             this.Navigate = Navigate;
             this.UpdateSignIn = UpdateSignIn;
+            this.SignOut = SignOut;
             initDefaultValue();
         }
         public void initDefaultValue()
@@ -111,7 +113,7 @@ namespace Grahita.pages
                     db.Books.RemoveRange(booksToDelete);
 
                     db.SaveChanges();
-                    Navigate(MainWindow.Navigation.buku);
+                    SignOut(null, null);
                     MessageBox.Show("Akun berhasil dihapus", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
