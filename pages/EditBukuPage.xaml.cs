@@ -87,5 +87,20 @@ namespace Grahita.pages
                 }
             }
         }
+        private void HapusBuku(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Apakah Anda yakin ingin menghapus buku ini?", "Penghapusan Buku", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                using (var db = new GrahitaDBEntities())
+                {
+                    var bookToDelete = db.Books.Find(book.Id);
+                    db.Books.Remove(bookToDelete);
+                    db.SaveChanges();
+                    Navigate(MainWindow.Navigation.dashboard);
+                    MessageBox.Show("Buku berhasil dihapus", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
     }
 }

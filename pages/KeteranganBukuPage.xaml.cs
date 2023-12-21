@@ -112,22 +112,20 @@ namespace Grahita.pages
 
         private void onChangeStatus(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result=MessageBox.Show("Apakah Anda yakin?", "Ubah status buku", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.OK)
+            MessageBoxResult result=MessageBox.Show("Apakah Anda ingin mengubah status buku menjadi " + (book.Available ? "tidak tersedia" : "tersedia") + "?", "Perubahan Status Buku", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
             {
                 using (var db = new GrahitaDBEntities())
                 {
 
                     var updatedBook = db.Books.Find(book.Id);
                     updatedBook.Available = !updatedBook.Available;
+                    book.Available = !book.Available;
                     db.SaveChanges();
                     updateStatusBuku();
                     MessageBox.Show("Status buku diubah", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
         }
-
-       
-
     }
 }
