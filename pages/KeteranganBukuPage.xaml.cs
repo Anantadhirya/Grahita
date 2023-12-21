@@ -43,16 +43,7 @@ namespace Grahita.pages
             Gambar.Source = book.Image != null ? new BitmapImage(new Uri(book.Image)) : null;
             Author.Text = book.Author;
             Owner.Text = owner != null ? owner.Name : "";
-            if (book.Available)
-            {
-                Status.Text = "Tersedia";
-                Status.Foreground = new SolidColorBrush(Colors.Green);
-            }
-            else
-            {
-                Status.Text = "Dipinjam";
-                Status.Foreground = new SolidColorBrush(Colors.Red);
-            }
+            updateStatusBuku();
             if (currentUser != null && owner != null && currentUser.Id == owner.Id)
             {
                 // Kalau mbuka bukunya sendiri
@@ -69,6 +60,20 @@ namespace Grahita.pages
             this.isSignedIn = isSignedIn;
             this.Navigate = Navigate;
             this.NavigateEditBuku = navigateEditBuku;
+        }
+
+        private void updateStatusBuku()
+        {
+            if (book.Available)
+            {
+                Status.Text = "Tersedia";
+                Status.Foreground = new SolidColorBrush(Colors.Green);
+            }
+            else
+            {
+                Status.Text = "Dipinjam";
+                Status.Foreground = new SolidColorBrush(Colors.Red);
+            }
         }
 
         private void onPinjam(object sender,RoutedEventArgs e)
@@ -101,7 +106,7 @@ namespace Grahita.pages
 
         private void onChangeStatus(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result=MessageBox.Show("Apakah Anda yakin?", "Ubah status buku", MessageBoxButton.OKCancel);
+            MessageBoxResult result=MessageBox.Show("Apakah Anda yakin?", "Ubah status buku", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.OK)
             {
                 using (var db = new GrahitaDBEntities())
@@ -110,18 +115,7 @@ namespace Grahita.pages
                     var updatedBook = db.Books.Find(book.Id);
                     updatedBook.Available = !updatedBook.Available;
                     db.SaveChanges();
-
-                    if (updatedBook.Available)
-                    {
-                        Status.Text = "Tersedia";
-                        Status.Foreground = new SolidColorBrush(Colors.Green);
-                    }
-                    else
-                    {
-                        Status.Text = "Dipinjam";
-                        Status.Foreground = new SolidColorBrush(Colors.Red);
-                    }
-
+                    updateStatusBuku();
                     MessageBox.Show("Status buku diubah", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
