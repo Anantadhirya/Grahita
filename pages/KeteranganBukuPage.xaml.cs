@@ -48,18 +48,6 @@ namespace Grahita.pages
             LokasiPemilik.Text = owner != null ? owner.Location : "";
             GambarPemilik.Source = new BitmapImage(new Uri(owner != null && owner.Image != null ? owner.Image : "pack://application:,,,/public/images/blank_profile.jpg"));
             updateStatusBuku();
-            if (currentUser != null && owner != null && currentUser.Id == owner.Id)
-            {
-                // Kalau mbuka bukunya sendiri
-                ButtonEdit.Visibility = Visibility.Visible;
-                ButtonPinjam.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                // Kalau mbuka bukunya orang lain
-                ButtonEdit.Visibility = Visibility.Collapsed;
-                ButtonPinjam.Visibility = Visibility.Visible;
-            }
 
             this.isSignedIn = isSignedIn;
             this.Navigate = Navigate;
@@ -77,6 +65,18 @@ namespace Grahita.pages
             {
                 Status.Text = "Dipinjam";
                 Status.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            if (currentUser != null && owner != null && currentUser.Id == owner.Id)
+            {
+                // Kalau mbuka bukunya sendiri
+                ButtonEdit.Visibility = Visibility.Visible;
+                ButtonPinjam.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                // Kalau mbuka bukunya orang lain
+                ButtonEdit.Visibility = Visibility.Collapsed;
+                ButtonPinjam.Visibility = book.Available ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
